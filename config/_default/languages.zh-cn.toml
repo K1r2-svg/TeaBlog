@@ -9,7 +9,11 @@ title = "Tea"
   isoCode = "zh-cn"
   rtl = false
   dateFormat = "2006 年 1 月 2 日"
+<<<<<<< HEAD
   logo = "img/Tea_logo.png"#"img/blowfish_logo_transparent.png"
+=======
+  logo = "img/blowfish_logo_transparent.png"
+>>>>>>> a1c1260f22db13d0d7e37f2444867a48b7649610
   #secondaryLogo = "img/secondary-logo.png"
   #description = "My awesome website"
   # copyright = "Copy, _right?_ :thinking_face:"
