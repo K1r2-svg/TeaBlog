@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>我的博客 on Tea</title>
+    <title>我的文档 on Tea</title>
     <link>http://localhost:1313/posts/</link>
-    <description>Recent content in 我的博客 on Tea</description>
+    <description>Recent content in 我的文档 on Tea</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <copyright>© 2025 Tea</copyright>

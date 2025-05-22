@@ -16,15 +16,14 @@
   weight = 20
 
 [[main]]
-  name = "OpenCV"
+  name = "Python"
   parent = "文档"
-  pageRef = "samples"
+  pageRef = "Python"
   weight = 20
 
 [[main]]
   name = "C/C++"
   parent = "文档"
-  pre = "github"
   pageRef = "samples"
   weight = 20
 

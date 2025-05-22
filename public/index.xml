@@ -20,6 +20,16 @@
     </item>
     
     <item>
+      <title>Flask</title>
+      <link>http://localhost:1313/posts/python/flask/</link>
+      <pubDate>Thu, 22 May 2025 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/posts/python/flask/</guid>
+      <description></description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:1313/posts/python/flask/featured.svg" />
+    </item>
+    
+    <item>
       <title>Git</title>
       <link>http://localhost:1313/posts/git/git%E5%9F%BA%E7%A1%80/</link>
       <pubDate>Thu, 22 May 2025 00:00:00 +0000</pubDate>
@@ -27,6 +37,46 @@
       <guid>http://localhost:1313/posts/git/git%E5%9F%BA%E7%A1%80/</guid>
       <description></description>
       <media:content xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:1313/posts/git/git%E5%9F%BA%E7%A1%80/featured.svg" />
+    </item>
+    
+    <item>
+      <title>OpenCV</title>
+      <link>http://localhost:1313/posts/python/opencv/</link>
+      <pubDate>Thu, 22 May 2025 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/posts/python/opencv/</guid>
+      <description></description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:1313/posts/python/opencv/featured.svg" />
+    </item>
+    
+    <item>
+      <title>openGL</title>
+      <link>http://localhost:1313/posts/python/opengl/</link>
+      <pubDate>Thu, 22 May 2025 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/posts/python/opengl/</guid>
+      <description></description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:1313/posts/python/opengl/featured.svg" />
+    </item>
+    
+    <item>
+      <title>PyGame</title>
+      <link>http://localhost:1313/posts/python/pygame/</link>
+      <pubDate>Thu, 22 May 2025 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/posts/python/pygame/</guid>
+      <description></description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:1313/posts/python/pygame/featured.svg" />
+    </item>
+    
+    <item>
+      <title>Python</title>
+      <link>http://localhost:1313/posts/python/python%E5%9F%BA%E7%A1%80/</link>
+      <pubDate>Thu, 22 May 2025 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/posts/python/python%E5%9F%BA%E7%A1%80/</guid>
+      <description></description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:1313/posts/python/python%E5%9F%BA%E7%A1%80/featured.svg" />
     </item>
     
   </channel>

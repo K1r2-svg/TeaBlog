@@ -1,11 +1,11 @@
 colorScheme = "forest"
-defaultAppearance = "dark"
+defaultAppearance = "light"
 autoSwitchAppearance = true
 enableSearch = true
 enableCodeCopy = false
 replyByEmail = false
 disableImageOptimization = false
-disableTextInHeader = false
+disableTextInHeader = true
 giteaDefaultServer = "https://git.fsfe.org"
 forgejoDefaultServer = "https://v8.next.forgejo.org"
 defaultBackgroundImage = "img/background.svg"
@@ -17,6 +17,8 @@ selineAnalytics = { }
 buymeacoffee = { }
 verification = { }
 rssnext = { }
+smartTOC = true
+smartTOCHideUnfocusedChildren = true
 
 [header]
 layout = "fixed"
@@ -31,10 +33,10 @@ showScrollToTop = true
 [homepage]
 layout = "background"
 showRecent = true
-showRecentItems = 5
-showMoreLink = false
+showRecentItems = 6
+showMoreLink = true
 showMoreLinkDest = "/posts/"
-cardView = false
+cardView = true
 cardViewScreenWidth = false
 layoutBackgroundBlur = true
 
@@ -62,7 +64,7 @@ showTaxonomies = false
 showAuthorsBadges = false
 showWordCount = true
 showZenMode = false
-showComments = true
+showComments = false
 heroStyle = 'background'
 
 [list]
@@ -78,7 +80,7 @@ showTableOfContents = false
 showCards = false
 orderByWeight = false
 groupByYear = true
-cardView = false
+cardView = true
 cardViewScreenWidth = false
 constrainItemsWidth = false
 
