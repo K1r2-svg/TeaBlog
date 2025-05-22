@@ -9,5 +9,15 @@
     <copyright>© 2025 Tea</copyright>
     <lastBuildDate>Wed, 21 May 2025 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/posts/git/index.xml" rel="self" type="application/rss+xml" />
     
+    <item>
+      <title>Git基础</title>
+      <link>http://localhost:1313/posts/git/git%E5%9F%BA%E7%A1%80/</link>
+      <pubDate>Thu, 22 May 2025 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/posts/git/git%E5%9F%BA%E7%A1%80/</guid>
+      <description></description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:1313/posts/git/git%E5%9F%BA%E7%A1%80/featured.svg" />
+    </item>
+    
   </channel>
 </rss>

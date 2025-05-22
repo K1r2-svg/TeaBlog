@@ -70,11 +70,13 @@
   <meta property="og:locale" content="zh_cn">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
-    <meta property="article:published_time" content="2025-05-21T00:00:00+00:00">
-    <meta property="article:modified_time" content="2025-05-21T00:00:00+00:00">
+    <meta property="article:published_time" content="2025-05-22T00:00:00+00:00">
+    <meta property="article:modified_time" content="2025-05-22T00:00:00+00:00">
+    <meta property="og:image" content="http://localhost:1313/posts/pwn/heap/fastbin_attack/featured.svg">
 
   
-  <meta name="twitter:card" content="summary">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="http://localhost:1313/posts/pwn/heap/fastbin_attack/featured.svg">
   <meta name="twitter:title" content="Fast bin attack">
 
   
@@ -94,15 +96,15 @@
       "name": "Tea"
     },
     "copyrightYear": "2025",
-    "dateCreated": "2025-05-21T00:00:00\u002b00:00",
-    "datePublished": "2025-05-21T00:00:00\u002b00:00",
+    "dateCreated": "2025-05-22T00:00:00\u002b00:00",
+    "datePublished": "2025-05-22T00:00:00\u002b00:00",
     
-    "dateModified": "2025-05-21T00:00:00\u002b00:00",
+    "dateModified": "2025-05-22T00:00:00\u002b00:00",
     
     
     
     "mainEntityOfPage": "true",
-    "wordCount": "2348"
+    "wordCount": "980"
   }]
   </script>
 
@@ -578,12 +580,6 @@
   
   
   
- 
-  
-   
-  
- 
-
 
 
 <div id="hero" class="h-[150px] md:h-[200px]"></div>
@@ -592,7 +588,7 @@
 
     
     <div class="fixed inset-x-0 top-0 h-[800px] single_hero_background nozoom"
-    style="background-image:url(/img/background.svg);">
+    style="background-image:url(/posts/pwn/heap/fastbin_attack/featured.svg);">
     
 
 
@@ -659,7 +655,7 @@
     <a
       class="hover:underline decoration-neutral-300 dark:underline-neutral-600"
       href="/posts/pwn/heap/"
-      >Basics</a
+      >Heap</a
     ><span class="px-1 text-primary-500">/</span>
   </li>
 
@@ -722,7 +718,7 @@
 <div class="flex flex-row flex-wrap items-center">
   
   
-  <time datetime="2025-05-21T00:00:00&#43;00:00">2025 年 6 月 21 日</time><span class="px-2 text-primary-500">&middot;</span><span>2348 字</span><span class="px-2 text-primary-500">&middot;</span><span title="预计阅读">5 分钟</span>
+  <time datetime="2025-05-22T00:00:00&#43;00:00">2025 年 6 月 22 日</time><span class="px-2 text-primary-500">&middot;</span><span>980 字</span><span class="px-2 text-primary-500">&middot;</span><span title="预计阅读">5 分钟</span>
   
 
   
@@ -832,29 +828,48 @@
     class="min-w-[220px] py-2 border-dotted ltr:-ml-5 ltr:border-l ltr:pl-5 rtl:-mr-5 rtl:border-r rtl:pr-5 dark:border-neutral-600">
     <nav id="TableOfContents">
   <ul>
-    <li><a href="#fast-bin-attack">Fast bin attack</a>
+    <li><a href="#whats-fast-bin">What&rsquo;s fast bin</a></li>
+    <li><a href="#fast-bin-dup">fast bin dup</a>
       <ul>
-        <li><a href="#whats-fast-bin">What&rsquo;s fast bin</a></li>
-        <li><a href="#fast-bin-dup">fast bin dup</a>
+        <li><a href="#glibc223">glibc2.23</a>
           <ul>
-            <li><a href="#glibc223">glibc2.23</a></li>
-            <li><a href="#glibc227---glibc239">glibc2.27 - glibc2.39</a></li>
+            <li><a href="#poc精简">poc精简</a></li>
           </ul>
         </li>
-        <li><a href="#fastbin-dup-consolidate">fastbin dup consolidate</a>
+        <li><a href="#glibc227---glibc239">glibc2.27 - glibc2.39</a>
           <ul>
-            <li><a href="#poc精简-2">POC精简</a></li>
+            <li><a href="#poc精简-1">poc精简</a></li>
           </ul>
         </li>
-        <li><a href="#fastbin-dup-into-stack">fastbin dup into stack</a>
+      </ul>
+    </li>
+    <li><a href="#fastbin-dup-consolidate">fastbin dup consolidate</a>
+      <ul>
+        <li><a href="#poc精简-2">POC精简</a>
           <ul>
-            <li><a href="#poc精简-3">POC精简</a></li>
+            <li><a href="#glibc-223">glibc 2.23</a></li>
+            <li><a href="#glibc-227---glibc-239">glibc 2.27 - glibc 2.39</a></li>
           </ul>
         </li>
-        <li><a href="#fastbin_reverse_into_tcache">fastbin_reverse_into_tcache</a>
+      </ul>
+    </li>
+    <li><a href="#fastbin-dup-into-stack">fastbin dup into stack</a>
+      <ul>
+        <li><a href="#poc精简-3">POC精简</a>
           <ul>
-            <li><a href="#知识点">知识点</a></li>
-            <li><a href="#poc">POC</a></li>
+            <li><a href="#glibc-223-1">glibc 2.23</a></li>
+            <li><a href="#glibc-227---glibc-239-1">glibc 2.27 - glibc 2.39</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#fastbin_reverse_into_tcache">fastbin_reverse_into_tcache</a>
+      <ul>
+        <li><a href="#知识点">知识点</a></li>
+        <li><a href="#poc">POC</a>
+          <ul>
+            <li><a href="#glibc-227---glibc-231">glibc 2.27 - glibc 2.31</a></li>
+            <li><a href="#glibc-232---glibc-239">glibc 2.32 - glibc 2.39</a></li>
           </ul>
         </li>
       </ul>
@@ -872,29 +887,48 @@
     class="py-2 border-dotted border-neutral-300 ltr:-ml-5 ltr:border-l ltr:pl-5 rtl:-mr-5 rtl:border-r rtl:pr-5 dark:border-neutral-600">
     <nav id="TableOfContents">
   <ul>
-    <li><a href="#fast-bin-attack">Fast bin attack</a>
+    <li><a href="#whats-fast-bin">What&rsquo;s fast bin</a></li>
+    <li><a href="#fast-bin-dup">fast bin dup</a>
       <ul>
-        <li><a href="#whats-fast-bin">What&rsquo;s fast bin</a></li>
-        <li><a href="#fast-bin-dup">fast bin dup</a>
+        <li><a href="#glibc223">glibc2.23</a>
           <ul>
-            <li><a href="#glibc223">glibc2.23</a></li>
-            <li><a href="#glibc227---glibc239">glibc2.27 - glibc2.39</a></li>
+            <li><a href="#poc精简">poc精简</a></li>
           </ul>
         </li>
-        <li><a href="#fastbin-dup-consolidate">fastbin dup consolidate</a>
+        <li><a href="#glibc227---glibc239">glibc2.27 - glibc2.39</a>
           <ul>
-            <li><a href="#poc精简-2">POC精简</a></li>
+            <li><a href="#poc精简-1">poc精简</a></li>
           </ul>
         </li>
-        <li><a href="#fastbin-dup-into-stack">fastbin dup into stack</a>
+      </ul>
+    </li>
+    <li><a href="#fastbin-dup-consolidate">fastbin dup consolidate</a>
+      <ul>
+        <li><a href="#poc精简-2">POC精简</a>
           <ul>
-            <li><a href="#poc精简-3">POC精简</a></li>
+            <li><a href="#glibc-223">glibc 2.23</a></li>
+            <li><a href="#glibc-227---glibc-239">glibc 2.27 - glibc 2.39</a></li>
           </ul>
         </li>
-        <li><a href="#fastbin_reverse_into_tcache">fastbin_reverse_into_tcache</a>
+      </ul>
+    </li>
+    <li><a href="#fastbin-dup-into-stack">fastbin dup into stack</a>
+      <ul>
+        <li><a href="#poc精简-3">POC精简</a>
           <ul>
-            <li><a href="#知识点">知识点</a></li>
-            <li><a href="#poc">POC</a></li>
+            <li><a href="#glibc-223-1">glibc 2.23</a></li>
+            <li><a href="#glibc-227---glibc-239-1">glibc 2.27 - glibc 2.39</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#fastbin_reverse_into_tcache">fastbin_reverse_into_tcache</a>
+      <ul>
+        <li><a href="#知识点">知识点</a></li>
+        <li><a href="#poc">POC</a>
+          <ul>
+            <li><a href="#glibc-227---glibc-231">glibc 2.27 - glibc 2.31</a></li>
+            <li><a href="#glibc-232---glibc-239">glibc 2.32 - glibc 2.39</a></li>
           </ul>
         </li>
       </ul>
@@ -944,7 +978,7 @@
         <div class="article-content max-w-prose mb-20">
           
 
-<h2 class="relative group">Fast bin attack 
+<h1 class="relative group">Fast bin attack 
     <div id="fast-bin-attack" class="anchor"></div>
     
     <span
@@ -953,10 +987,10 @@
             style="text-decoration-line: none !important;" href="#fast-bin-attack" aria-label="锚点">#</a>
     </span>        
     
-</h2>
+</h1>
 
 
-<h3 class="relative group">What&rsquo;s fast bin 
+<h2 class="relative group">What&rsquo;s fast bin 
     <div id="whats-fast-bin" class="anchor"></div>
     
     <span
@@ -965,7 +999,7 @@
             style="text-decoration-line: none !important;" href="#whats-fast-bin" aria-label="锚点">#</a>
     </span>        
     
-</h3>
+</h2>
 <ul>
 <li>
 <p>fastbin被存放在fastbinY数组中，该数组一共有10个元素。</p>
@@ -1000,7 +1034,7 @@
 </ul>
 
 
-<h3 class="relative group">fast bin dup 
+<h2 class="relative group">fast bin dup 
     <div id="fast-bin-dup" class="anchor"></div>
     
     <span
@@ -1009,10 +1043,10 @@
             style="text-decoration-line: none !important;" href="#fast-bin-dup" aria-label="锚点">#</a>
     </span>        
     
-</h3>
+</h2>
 
 
-<h4 class="relative group">glibc2.23 
+<h3 class="relative group">glibc2.23 
     <div id="glibc223" class="anchor"></div>
     
     <span
@@ -1021,10 +1055,10 @@
             style="text-decoration-line: none !important;" href="#glibc223" aria-label="锚点">#</a>
     </span>        
     
-</h4>
+</h3>
 
 
-<h5 class="relative group">poc精简 
+<h4 class="relative group">poc精简 
     <div id="poc%E7%B2%BE%E7%AE%80" class="anchor"></div>
     
     <span
@@ -1033,7 +1067,7 @@
             style="text-decoration-line: none !important;" href="#poc%E7%B2%BE%E7%AE%80" aria-label="锚点">#</a>
     </span>        
     
-</h5>
+</h4>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
 </span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;stdlib.h&gt;</span><span class="cp">
 </span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;assert.h&gt;</span><span class="cp">
@@ -1056,7 +1090,7 @@
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></div>
 
-<h4 class="relative group">glibc2.27 - glibc2.39 
+<h3 class="relative group">glibc2.27 - glibc2.39 
     <div id="glibc227---glibc239" class="anchor"></div>
     
     <span
@@ -1065,10 +1099,10 @@
             style="text-decoration-line: none !important;" href="#glibc227---glibc239" aria-label="锚点">#</a>
     </span>        
     
-</h4>
+</h3>
 
 
-<h5 class="relative group">poc精简 
+<h4 class="relative group">poc精简 
     <div id="poc%E7%B2%BE%E7%AE%80-1" class="anchor"></div>
     
     <span
@@ -1077,7 +1111,7 @@
             style="text-decoration-line: none !important;" href="#poc%E7%B2%BE%E7%AE%80-1" aria-label="锚点">#</a>
     </span>        
     
-</h5>
+</h4>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
 </span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;stdlib.h&gt;</span><span class="cp">
 </span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;assert.h&gt;</span><span class="cp">
@@ -1115,7 +1149,7 @@
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></div>
 
-<h3 class="relative group">fastbin dup consolidate 
+<h2 class="relative group">fastbin dup consolidate 
     <div id="fastbin-dup-consolidate" class="anchor"></div>
     
     <span
@@ -1124,10 +1158,10 @@
             style="text-decoration-line: none !important;" href="#fastbin-dup-consolidate" aria-label="锚点">#</a>
     </span>        
     
-</h3>
+</h2>
 
 
-<h4 class="relative group">POC精简 
+<h3 class="relative group">POC精简 
     <div id="poc%E7%B2%BE%E7%AE%80-2" class="anchor"></div>
     
     <span
@@ -1136,10 +1170,10 @@
             style="text-decoration-line: none !important;" href="#poc%E7%B2%BE%E7%AE%80-2" aria-label="锚点">#</a>
     </span>        
     
-</h4>
+</h3>
 
 
-<h5 class="relative group">glibc 2.23 
+<h4 class="relative group">glibc 2.23 
     <div id="glibc-223" class="anchor"></div>
     
     <span
@@ -1148,7 +1182,7 @@
             style="text-decoration-line: none !important;" href="#glibc-223" aria-label="锚点">#</a>
     </span>        
     
-</h5>
+</h4>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
 </span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;stdlib.h&gt;</span><span class="cp">
 </span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;assert.h&gt;</span><span class="cp">
@@ -1181,7 +1215,7 @@
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></div>
 
-<h5 class="relative group">glibc 2.27 - glibc 2.39 
+<h4 class="relative group">glibc 2.27 - glibc 2.39 
     <div id="glibc-227---glibc-239" class="anchor"></div>
     
     <span
@@ -1190,7 +1224,7 @@
             style="text-decoration-line: none !important;" href="#glibc-227---glibc-239" aria-label="锚点">#</a>
     </span>        
     
-</h5>
+</h4>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
 </span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;stdlib.h&gt;</span><span class="cp">
 </span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;assert.h&gt;</span><span class="cp">
@@ -1227,7 +1261,7 @@
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></div>
 
-<h3 class="relative group">fastbin dup into stack 
+<h2 class="relative group">fastbin dup into stack 
     <div id="fastbin-dup-into-stack" class="anchor"></div>
     
     <span
@@ -1236,10 +1270,10 @@
             style="text-decoration-line: none !important;" href="#fastbin-dup-into-stack" aria-label="锚点">#</a>
     </span>        
     
-</h3>
+</h2>
 
 
-<h4 class="relative group">POC精简 
+<h3 class="relative group">POC精简 
     <div id="poc%E7%B2%BE%E7%AE%80-3" class="anchor"></div>
     
     <span
@@ -1248,10 +1282,10 @@
             style="text-decoration-line: none !important;" href="#poc%E7%B2%BE%E7%AE%80-3" aria-label="锚点">#</a>
     </span>        
     
-</h4>
+</h3>
 
 
-<h5 class="relative group">glibc 2.23 
+<h4 class="relative group">glibc 2.23 
     <div id="glibc-223-1" class="anchor"></div>
     
     <span
@@ -1260,7 +1294,7 @@
             style="text-decoration-line: none !important;" href="#glibc-223-1" aria-label="锚点">#</a>
     </span>        
     
-</h5>
+</h4>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
 </span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;stdlib.h&gt;</span><span class="cp">
 </span></span></span><span class="line"><span class="cl"><span class="cp"></span>
@@ -1293,7 +1327,7 @@
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></div>
 
-<h5 class="relative group">glibc 2.27 - glibc 2.39 
+<h4 class="relative group">glibc 2.27 - glibc 2.39 
     <div id="glibc-227---glibc-239-1" class="anchor"></div>
     
     <span
@@ -1302,7 +1336,7 @@
             style="text-decoration-line: none !important;" href="#glibc-227---glibc-239-1" aria-label="锚点">#</a>
     </span>        
     
-</h5>
+</h4>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
 </span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;stdlib.h&gt;</span><span class="cp">
 </span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;assert.h&gt;</span><span class="cp">
@@ -1347,7 +1381,7 @@
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
 </span></span></code></pre></div>
 
-<h3 class="relative group">fastbin_reverse_into_tcache 
+<h2 class="relative group">fastbin_reverse_into_tcache 
     <div id="fastbin_reverse_into_tcache" class="anchor"></div>
     
     <span
@@ -1356,10 +1390,10 @@
             style="text-decoration-line: none !important;" href="#fastbin_reverse_into_tcache" aria-label="锚点">#</a>
     </span>        
     
-</h3>
+</h2>
 
 
-<h4 class="relative group">知识点 
+<h3 class="relative group">知识点 
     <div id="%E7%9F%A5%E8%AF%86%E7%82%B9" class="anchor"></div>
     
     <span
@@ -1368,14 +1402,14 @@
             style="text-decoration-line: none !important;" href="#%E7%9F%A5%E8%AF%86%E7%82%B9" aria-label="锚点">#</a>
     </span>        
     
-</h4>
+</h3>
 <ul>
 <li>libc 2.32以上tache 和fastbin 会有地址加密</li>
 <li>程序每当从fastbin/small bin中取出一个堆块，会尝试把该bin中剩余的堆块拿出来去填充tcache。</li>
 </ul>
 
 
-<h4 class="relative group">POC 
+<h3 class="relative group">POC 
     <div id="poc" class="anchor"></div>
     
     <span
@@ -1384,10 +1418,10 @@
             style="text-decoration-line: none !important;" href="#poc" aria-label="锚点">#</a>
     </span>        
     
-</h4>
+</h3>
 
 
-<h5 class="relative group">glibc 2.27 - glibc 2.31 
+<h4 class="relative group">glibc 2.27 - glibc 2.31 
     <div id="glibc-227---glibc-231" class="anchor"></div>
     
     <span
@@ -1396,7 +1430,7 @@
             style="text-decoration-line: none !important;" href="#glibc-227---glibc-231" aria-label="锚点">#</a>
     </span>        
     
-</h5>
+</h4>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
 </span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;stdlib.h&gt;</span><span class="cp">
 </span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;string.h&gt;</span><span class="cp">
@@ -1456,7 +1490,7 @@
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></div>
 
-<h5 class="relative group">glibc 2.32 - glibc 2.39 
+<h4 class="relative group">glibc 2.32 - glibc 2.39 
     <div id="glibc-232---glibc-239" class="anchor"></div>
     
     <span
@@ -1465,7 +1499,7 @@
             style="text-decoration-line: none !important;" href="#glibc-232---glibc-239" aria-label="锚点">#</a>
     </span>        
     
-</h5>
+</h4>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
 </span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;stdlib.h&gt;</span><span class="cp">
 </span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;string.h&gt;</span><span class="cp">
@@ -1534,8 +1568,8 @@
           
         
       <script>
-        var oid = "views_posts\\Pwn\\Heap\\Fastbin_attack.md"
-        var oid_likes = "likes_posts\\Pwn\\Heap\\Fastbin_attack.md"
+        var oid = "views_posts\\Pwn\\Heap\\Fastbin_attack\\index.md"
+        var oid_likes = "likes_posts\\Pwn\\Heap\\Fastbin_attack\\index.md"
       </script>
       
       

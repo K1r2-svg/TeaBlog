@@ -8,8 +8,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
   
-  <title> &middot; Tea</title>
-  <meta name="title" content=" &middot; Tea" />
+  <title>Git &middot; Tea</title>
+  <meta name="title" content="Git &middot; Tea" />
   
   
   
@@ -66,14 +66,18 @@
   
   <meta property="og:url" content="http://localhost:1313/posts/git/git%E5%9F%BA%E7%A1%80/">
   <meta property="og:site_name" content="Tea">
-  <meta property="og:title" content="Tea">
+  <meta property="og:title" content="Git">
   <meta property="og:locale" content="zh_cn">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2025-05-22T00:00:00+00:00">
+    <meta property="article:modified_time" content="2025-05-22T00:00:00+00:00">
+    <meta property="og:image" content="http://localhost:1313/posts/git/git%E5%9F%BA%E7%A1%80/featured.svg">
 
   
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Tea">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="http://localhost:1313/posts/git/git%E5%9F%BA%E7%A1%80/featured.svg">
+  <meta name="twitter:title" content="Git">
 
   
   <script type="application/ld+json">
@@ -81,8 +85,8 @@
     "@context": "https://schema.org",
     "@type": "Article",
     "articleSection": "我的博客",
-    "name": "",
-    "headline": "",
+    "name": "Git",
+    "headline": "Git",
     
     
     "inLanguage": "zh-cn",
@@ -91,11 +95,11 @@
       "@type": "Person",
       "name": "Tea"
     },
+    "copyrightYear": "2025",
+    "dateCreated": "2025-05-22T00:00:00\u002b00:00",
+    "datePublished": "2025-05-22T00:00:00\u002b00:00",
     
-    
-    
-    
-    
+    "dateModified": "2025-05-22T00:00:00\u002b00:00",
     
     
     
@@ -122,6 +126,17 @@
 <script src="/lib/jquery/jquery.slim.min.03cb160e3cfdb2667a2e2c80d283bebcf63ff8bbc4b629c9ab2babf6fae1d0c07ad470edae783efa4fabda2ac01c58d60e63b98b3c336be8208460f08f4354f5.js" integrity="sha512-A8sWDjz9smZ6LiyA0oO&#43;vPY/&#43;LvEtinJqyur9vrh0MB61HDtrng&#43;&#43;k&#43;r2irAHFjWDmO5izwza&#43;gghGDwj0NU9Q=="></script>
 
 
+
+  
+  
+  
+  
+  <script
+    defer
+    type="text/javascript"
+    src="/js/mermaid.bundle.329716d2248648fb853e4cb460cf90594897c4af0a587e224b39fdb6f74b608ad798cbf9deef42b69b2e52b00d62b35492b9ca0a8a4fceae42122bbd36de33f0.js"
+    integrity="sha512-MpcW0iSGSPuFPky0YM&#43;QWUiXxK8KWH4iSzn9tvdLYIrXmMv53u9CtpsuUrANYrNUkrnKCopPzq5CEiu9Nt4z8A=="
+  ></script>
 
 
 
@@ -576,12 +591,6 @@
   
   
   
- 
-  
-   
-  
- 
-
 
 
 <div id="hero" class="h-[150px] md:h-[200px]"></div>
@@ -590,7 +599,7 @@
 
     
     <div class="fixed inset-x-0 top-0 h-[800px] single_hero_background nozoom"
-    style="background-image:url(/img/background.svg);">
+    style="background-image:url(/posts/git/git%E5%9F%BA%E7%A1%80/featured.svg);">
     
 
 
@@ -655,7 +664,7 @@
     <a
       class="hover:underline decoration-neutral-300 dark:underline-neutral-600"
       href="/posts/git/git%E5%9F%BA%E7%A1%80/"
-      >posts</a
+      >Git</a
     ><span class="px-1 text-primary-500">/</span>
   </li>
 
@@ -664,7 +673,7 @@
 
     
     <h1 class="mt-0 text-4xl font-extrabold text-neutral-900 dark:text-neutral">
-      
+      Git
     </h1>
     <div class="mt-1 mb-6 text-base text-neutral-500 dark:text-neutral-400 print:hidden">
       
@@ -709,7 +718,7 @@
 <div class="flex flex-row flex-wrap items-center">
   
   
-  <time datetime="0001-01-01T00:00:00&#43;00:00">0001 年 6 月 1 日</time><span class="px-2 text-primary-500">&middot;</span><span>470 字</span><span class="px-2 text-primary-500">&middot;</span><span title="预计阅读">3 分钟</span>
+  <time datetime="2025-05-22T00:00:00&#43;00:00">2025 年 6 月 22 日</time><span class="px-2 text-primary-500">&middot;</span><span>470 字</span><span class="px-2 text-primary-500">&middot;</span><span title="预计阅读">3 分钟</span>
   
 
   
@@ -1097,10 +1106,15 @@
     </span>        
     
 </h3>
-<pre tabindex="0"><code class="language-mermaid" data-lang="mermaid">graph LR
-	A[工作区]--&gt;|git add| B[暂存区]
-	B --&gt;|git commit| C[本地仓库]
-</code></pre><ul>
+<div class="mermaid" align="center">
+  <pre>
+graph LR
+	A[工作区]-->|git add| B[暂存区]
+	B -->|git commit| C[本地仓库]
+</pre>
+</div>
+
+<ul>
 <li>工作区：当前项目的文件目录，是开发者直接编辑代码的地方。</li>
 <li>暂存区：用于临时存放即将提交的改动。</li>
 <li>本地仓库：存储项目完整历史和元数据的数据库（位于 <code>.git</code> 目录中）。</li>
@@ -1117,16 +1131,21 @@
     </span>        
     
 </h3>
-<pre tabindex="0"><code class="language-mermaid" data-lang="mermaid">graph LR
-	A[未跟踪]--&gt;|git add| B[未修改]
-	B --&gt; C[已修改]
-	C --&gt;|git add| D[已暂存]
-	A --&gt;|git add| D
-	D --&gt;|git commit| B
-	B --&gt;|git rm| A
-	D --&gt;|git reset| C
-	C --&gt;|git checkout| B
-</code></pre><ul>
+<div class="mermaid" align="center">
+  <pre>
+graph LR
+	A[未跟踪]-->|git add| B[未修改]
+	B --> C[已修改]
+	C -->|git add| D[已暂存]
+	A -->|git add| D
+	D -->|git commit| B
+	B -->|git rm| A
+	D -->|git reset| C
+	C -->|git checkout| B
+</pre>
+</div>
+
+<ul>
 <li>Untrack（未跟踪）</li>
 <li>Unmodified (未修改)</li>
 <li>Modified (已修改)</li>
@@ -1856,8 +1875,8 @@
           
         
       <script>
-        var oid = "views_posts\\Git\\Git基础.md"
-        var oid_likes = "likes_posts\\Git\\Git基础.md"
+        var oid = "views_posts\\Git\\Git基础\\index.md"
+        var oid_likes = "likes_posts\\Git\\Git基础\\index.md"
       </script>
       
       
@@ -1868,43 +1887,6 @@
   <footer class="pt-8 max-w-prose print:hidden">
 
     
-  
-    
-    
-    
-    <div class="pt-8">
-      <hr class="border-dotted border-neutral-300 dark:border-neutral-600" />
-      <div class="flex justify-between pt-3">
-        <span>
-          
-        </span>
-        <span>
-          
-            <a class="flex text-right group ml-3" href="/posts/git/git%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/">
-              <span class="flex flex-col">
-                <span
-                  class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
-                  >Git基础教程</span
-                >
-                <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
-                  
-                    <time datetime="2025-05-21T00:00:00&#43;00:00">2025 年 6 月 21 日</time>
-                  
-                </span>
-              </span>
-              <span
-                class="ml-3 text-neutral-700 group-hover:text-primary-600 ltr:inline rtl:hidden dark:text-neutral dark:group-hover:text-primary-400"
-                >&rarr;</span
-              >
-              <span
-                class="mr-3 text-neutral-700 group-hover:text-primary-600 ltr:hidden rtl:inline dark:text-neutral dark:group-hover:text-primary-400"
-                >&larr;</span
-              >
-            </a>
-          
-        </span>
-      </div>
-    </div>
   
 
 
