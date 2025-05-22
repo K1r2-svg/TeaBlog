@@ -1,0 +1,35 @@
+[[main]]
+  identifier = "github" #单独使用的图标
+  pre = "github" #显示图片
+  url = "https://github.com/K1r2-svg"
+  weight = 40
+
+[[main]]
+  name = "文档" 
+  pageRef = "posts"
+  weight = 10 #权重
+    
+[[main]]
+  name = "PWN"
+  parent = "文档"
+  pageRef = "Pwn"
+  weight = 20
+
+[[main]]
+  name = "OpenCV"
+  parent = "文档"
+  pageRef = "samples"
+  weight = 20
+
+[[main]]
+  name = "C/C++"
+  parent = "文档"
+  pre = "github"
+  pageRef = "samples"
+  weight = 20
+
+[[main]]
+  name = "Git"
+  parent = "文档"
+  pageRef = "Git"
+  weight = 20

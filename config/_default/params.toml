@@ -1,5 +1,5 @@
-colorScheme = "blowfish"
-defaultAppearance = "light"
+colorScheme = "forest"
+defaultAppearance = "dark"
 autoSwitchAppearance = true
 enableSearch = true
 enableCodeCopy = false
@@ -8,6 +8,8 @@ disableImageOptimization = false
 disableTextInHeader = false
 giteaDefaultServer = "https://git.fsfe.org"
 forgejoDefaultServer = "https://v8.next.forgejo.org"
+defaultBackgroundImage = "img/background.svg"
+defaultFeaturedImage = 'img/background.svg'
 firebase = { }
 fathomAnalytics = { }
 umamiAnalytics = { }
@@ -17,7 +19,7 @@ verification = { }
 rssnext = { }
 
 [header]
-layout = "basic"
+layout = "fixed"
 
 [footer]
 showMenu = true
@@ -27,14 +29,14 @@ showAppearanceSwitcher = true
 showScrollToTop = true
 
 [homepage]
-layout = "profile"
-showRecent = false
+layout = "background"
+showRecent = true
 showRecentItems = 5
 showMoreLink = false
 showMoreLinkDest = "/posts/"
 cardView = false
 cardViewScreenWidth = false
-layoutBackgroundBlur = false
+layoutBackgroundBlur = true
 
 [article]
 showDate = true
@@ -43,10 +45,10 @@ showLikes = false
 showDateOnlyInArticle = false
 showDateUpdated = false
 showAuthor = true
-showHero = false
+showHero = true
 layoutBackgroundBlur = true
 layoutBackgroundHeaderSpace = true
-showBreadcrumbs = false
+showBreadcrumbs = true
 showDraftLabel = true
 showEdit = false
 editAppendPath = true
@@ -55,14 +57,17 @@ showHeadingAnchors = true
 showPagination = true
 invertPagination = false
 showReadingTime = true
-showTableOfContents = false
+showTableOfContents = true #是否展示文章的目录
 showTaxonomies = false
 showAuthorsBadges = false
 showWordCount = true
 showZenMode = false
+showComments = true
+heroStyle = 'background'
 
 [list]
-showHero = ""
+showHero = true
+heroStyle = 'background'
 layoutBackgroundBlur = true
 layoutBackgroundHeaderSpace = true
 showBreadcrumbs = false
@@ -82,7 +87,7 @@ excludedKinds = [ "taxonomy", "term" ]
 
 [taxonomy]
 showTermCount = true
-showHero = false
+showHero = true
 showBreadcrumbs = false
 showViews = false
 showLikes = false
