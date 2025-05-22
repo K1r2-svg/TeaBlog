@@ -10,8 +10,7 @@ giteaDefaultServer = "https://git.fsfe.org"
 forgejoDefaultServer = "https://v8.next.forgejo.org"
 defaultBackgroundImage = "img/background.svg"
 defaultFeaturedImage = 'img/background.svg'
-firebase = { }
-fathomAnalytics = { }
+homAnalytics = { }
 umamiAnalytics = { }
 selineAnalytics = { }
 buymeacoffee = { }
@@ -42,8 +41,8 @@ layoutBackgroundBlur = true
 
 [article]
 showDate = true
-showViews = false
-showLikes = false
+showViews = true
+showLikes = true
 showDateOnlyInArticle = false
 showDateUpdated = false
 showAuthor = true
@@ -64,7 +63,7 @@ showTaxonomies = false
 showAuthorsBadges = false
 showWordCount = true
 showZenMode = false
-showComments = false
+showComments = true
 heroStyle = 'background'
 
 [list]
@@ -105,3 +104,12 @@ showTableOfContents = true
 groupByYear = false
 cardView = false
 cardViewScreenWidth = false
+
+[firebase]
+apiKey = "AIzaSyDME-8CoU92sP63jF-3xYCAfNzd_lyDu0w"
+authDomain = "blog-blowfish-f323e.firebaseapp.com"
+projectId = "blog-blowfish-f323e"
+storageBucket = "blog-blowfish-f323e.firebasestorage.app"
+messagingSenderId = "140830791440"
+appId = "1:140830791440:web:590984875df0c258c0f795"
+measurementId = "G-V628CJ7TNZ"

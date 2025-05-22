@@ -1,6 +1,7 @@
 ---
 title: "Fast bin attack"
 date: 2025-05-22
+showComments: true
 ---
 
 # Fast bin attack
@@ -386,6 +387,3 @@ int main(){
 	return 0;
 }
 ```
-
-
-
