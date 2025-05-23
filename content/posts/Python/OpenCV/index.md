@@ -50,7 +50,7 @@ cv2.imshow("show", image) #窗口标签，要显示图像的类
 - **delay**（可选，整数）：等待时间（毫秒），默认 `0` 表示无限等待
 
 ```python
-cv2.imwrite(0) #无限等待
+cv2.waitKey(0) #无限等待
 ```
 
 #### 返回值：
